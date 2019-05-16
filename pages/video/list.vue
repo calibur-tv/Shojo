@@ -1,7 +1,7 @@
 <template>
   <div
-    v-loading="pageLoading"
     id="video-list"
+    v-loading="pageLoading"
   >
     <header class="page-header">
       <el-row>
@@ -64,12 +64,18 @@
             size="small"
             type="primary"
             icon="edit"
-            @click="handleEditOpen(scope.row)">编辑</el-button>
+            @click="handleEditOpen(scope.row)"
+          >
+            编辑
+          </el-button>
           <el-button
             :type="scope.row.deleted_at ? 'warning' : 'danger'"
             size="small"
             icon="delete"
-            @click="handleDelete(scope.row)">{{ scope.row.deleted_at ? '恢复' : '删除' }}</el-button>
+            @click="handleDelete(scope.row)"
+          >
+            {{ scope.row.deleted_at ? '恢复' : '删除' }}
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -89,36 +95,40 @@
         label-width="100px"
       >
         <el-form-item label="番剧">
-          <bangumi-search v-model="editForm.bangumi_id"/>
+          <bangumi-search v-model="editForm.bangumi_id" />
         </el-form-item>
         <el-form-item label="集数">
-          <el-input v-model.trim="editForm.episode"/>
+          <el-input v-model.trim="editForm.episode" />
         </el-form-item>
         <el-form-item label="名称">
-          <el-input v-model.trim="editForm.name"/>
+          <el-input v-model.trim="editForm.name" />
         </el-form-item>
         <template>
           <el-form-item label="资源">
             <el-col :span="18">
               <el-input v-model.trim="editForm.resource.video[720].src">
-                <template slot="prepend">https://video.calibur.tv/</template>
+                <template slot="prepend">
+                  https://video.calibur.tv/
+                </template>
               </el-input>
             </el-col>
           </el-form-item>
         </template>
         <el-form-item label="海报">
           <el-input v-model.trim="editForm.poster">
-            <template slot="prepend">https://image.calibur.tv/</template>
+            <template slot="prepend">
+              https://image.calibur.tv/
+            </template>
           </el-input>
         </el-form-item>
         <el-form-item label="外链">
-          <el-input v-model.trim="editForm.url"/>
+          <el-input v-model.trim="editForm.url" />
         </el-form-item>
         <el-form-item label="百度云链接">
-          <el-input v-model.trim="editForm.baidu_cloud_src"/>
+          <el-input v-model.trim="editForm.baidu_cloud_src" />
         </el-form-item>
         <el-form-item label="百度云密码">
-          <el-input v-model.trim="editForm.baidu_cloud_pwd"/>
+          <el-input v-model.trim="editForm.baidu_cloud_pwd" />
         </el-form-item>
       </el-form>
     </v-dialog>
@@ -175,7 +185,7 @@ export default {
     }
   },
   methods: {
-    async getData() {
+    getData() {
       if (this.pageLoading) {
         return
       }
@@ -267,7 +277,7 @@ export default {
         })
         .catch(() => {})
     },
-    async handleEditDone() {
+    handleEditDone() {
       if (this.canNot('操作视频')) {
         return
       }

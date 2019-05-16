@@ -110,7 +110,9 @@
           />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">注册</div>
+          <div class="card-panel-text">
+            注册
+          </div>
           <count-to
             :start-val="0"
             :end-val="stats.user"
@@ -134,7 +136,9 @@
           />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">发帖</div>
+          <div class="card-panel-text">
+            发帖
+          </div>
           <count-to
             :start-val="0"
             :end-val="stats.post"
@@ -158,7 +162,9 @@
           />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">评论</div>
+          <div class="card-panel-text">
+            评论
+          </div>
           <count-to
             :start-val="0"
             :end-val="stats.comment"
@@ -182,7 +188,9 @@
           />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">图片</div>
+          <div class="card-panel-text">
+            图片
+          </div>
           <count-to
             :start-val="0"
             :end-val="stats.image"
@@ -206,7 +214,9 @@
           />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">漫评</div>
+          <div class="card-panel-text">
+            漫评
+          </div>
           <count-to
             :start-val="0"
             :end-val="stats.score"
@@ -230,7 +240,9 @@
           />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">提问</div>
+          <div class="card-panel-text">
+            提问
+          </div>
           <count-to
             :start-val="0"
             :end-val="stats.question"
@@ -254,7 +266,9 @@
           />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">回答</div>
+          <div class="card-panel-text">
+            回答
+          </div>
           <count-to
             :start-val="0"
             :end-val="stats.answer"
@@ -278,7 +292,9 @@
           />
         </div>
         <div class="card-panel-description">
-          <div class="card-panel-text">相册</div>
+          <div class="card-panel-text">
+            相册
+          </div>
           <count-to
             :start-val="0"
             :end-val="stats.image_album"

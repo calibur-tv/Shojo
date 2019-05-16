@@ -1,4 +1,4 @@
-export default function(ele, hgt = 0) {
+export default function (ele, hgt = 0) {
   if (typeof window === 'undefined' || !ele) {
     return 0
   }

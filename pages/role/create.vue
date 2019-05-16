@@ -1,7 +1,7 @@
 <template>
   <div
-    v-loading="loading"
     id="role-edit"
+    v-loading="loading"
   >
     <el-form
       ref="form"
@@ -36,7 +36,7 @@
         label="所属番剧"
         prop="bangumi_id"
       >
-        <bangumi-search v-model="form.bangumi_id"/>
+        <bangumi-search v-model="form.bangumi_id" />
       </el-form-item>
       <el-form-item
         label="角色头像"
@@ -48,7 +48,9 @@
             v-model.trim="form.avatar"
             :disabled="true"
           >
-            <template slot="prepend">https://image.calibur.tv/</template>
+            <template slot="prepend">
+              https://image.calibur.tv/
+            </template>
           </el-input>
         </el-col>
         <el-col
@@ -66,7 +68,7 @@
               :accept="imageUploadAccept"
             >
               <el-button type="text">
-                <i class="el-icon-plus"/>
+                <i class="el-icon-plus" />
                 上传
               </el-button>
             </el-upload>
@@ -90,7 +92,7 @@
             type="text"
             target="_blank"
           >
-            <i class="el-icon-view"/>&nbsp;预览
+            <i class="el-icon-view" />&nbsp;预览
           </a>
         </el-col>
       </el-form-item>
@@ -114,7 +116,9 @@
           <el-button
             type="primary"
             @click="submitForm"
-          >{{ id ? '确认编辑' : '立即创建' }}</el-button>
+          >
+            {{ id ? '确认编辑' : '立即创建' }}
+          </el-button>
         </el-col>
       </el-form-item>
     </el-form>
@@ -168,7 +172,7 @@ export default {
     this.getRoleById()
   },
   methods: {
-    async getRoleById() {
+    getRoleById() {
       this.$refs.form.resetFields()
       if (!/\d+/.test(this.id)) {
         return

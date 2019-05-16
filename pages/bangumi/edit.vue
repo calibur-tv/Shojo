@@ -25,16 +25,22 @@
             v-if="form.deleted_at"
             type="success"
             @click="handleDelete"
-          >恢复番剧</el-button>
+          >
+            恢复番剧
+          </el-button>
           <el-button
             v-else
             type="danger"
             @click="handleDelete"
-          >删除番剧</el-button>
+          >
+            删除番剧
+          </el-button>
           <el-button
             type="primary"
             @click="editBangumiInfo"
-          >更新番剧</el-button>
+          >
+            更新番剧
+          </el-button>
         </el-col>
       </el-form-item>
       <el-form-item
@@ -50,17 +56,17 @@
       <el-row>
         <el-col :span="4">
           <el-form-item label="有视频">
-            <el-switch v-model="form.has_video"/>
+            <el-switch v-model="form.has_video" />
           </el-form-item>
         </el-col>
         <el-col :span="4">
           <el-form-item label="有漫画">
-            <el-switch v-model="form.has_cartoon"/>
+            <el-switch v-model="form.has_cartoon" />
           </el-form-item>
         </el-col>
         <el-col :span="4">
           <el-form-item label="有漫评">
-            <el-switch v-model="form.has_score"/>
+            <el-switch v-model="form.has_score" />
           </el-form-item>
         </el-col>
       </el-row>
@@ -108,7 +114,9 @@
             :disabled="true"
             auto-complete="off"
           >
-            <template slot="prepend">https://image.calibur.tv/</template>
+            <template slot="prepend">
+              https://image.calibur.tv/
+            </template>
           </el-input>
         </el-col>
         <el-col
@@ -126,7 +134,7 @@
               :accept="imageUploadAccept"
             >
               <el-button type="text">
-                <i class="el-icon-plus"/>
+                <i class="el-icon-plus" />
                 上传
               </el-button>
             </el-upload>
@@ -140,7 +148,8 @@
             ref="popoverAvatar"
             placement="left"
             width="200"
-            trigger="hover">
+            trigger="hover"
+          >
             <img :src="imagePrefix + form.avatar">
           </el-popover>
           <a
@@ -149,7 +158,7 @@
             type="text"
             target="_blank"
           >
-            <i class="el-icon-view"/>&nbsp;预览
+            <i class="el-icon-view" />&nbsp;预览
           </a>
         </el-col>
       </el-form-item>
@@ -164,7 +173,9 @@
             :disabled="true"
             auto-complete="off"
           >
-            <template slot="prepend">https://image.calibur.tv/</template>
+            <template slot="prepend">
+              https://image.calibur.tv/
+            </template>
           </el-input>
         </el-col>
         <el-col
@@ -182,7 +193,7 @@
               :accept="imageUploadAccept"
             >
               <el-button type="text">
-                <i class="el-icon-plus"/>
+                <i class="el-icon-plus" />
                 上传
               </el-button>
             </el-upload>
@@ -206,7 +217,7 @@
             type="text"
             target="_blank"
           >
-            <i class="el-icon-view"/>&nbsp;预览
+            <i class="el-icon-view" />&nbsp;预览
           </a>
         </el-col>
       </el-form-item>
@@ -227,11 +238,12 @@
       type="info"
       style="margin-bottom: 20px"
     />
-    <el-tabs 
-      v-model="editableTabsValue" 
-      type="card" 
-      editable 
-      @edit="handleTabsEdit">
+    <el-tabs
+      v-model="editableTabsValue"
+      type="card"
+      editable
+      @edit="handleTabsEdit"
+    >
       <el-tab-pane
         v-for="(item, index) in seasons"
         :key="`${index}-${item.id}`"
@@ -262,11 +274,15 @@
               <el-button
                 type="warning"
                 @click="updateRelease"
-              >发布视频</el-button>
+              >
+                发布视频
+              </el-button>
               <el-button
                 type="primary"
                 @click="editSeasonInfo"
-              >更新季度</el-button>
+              >
+                更新季度
+              </el-button>
             </el-col>
           </el-form-item>
           <el-form-item
@@ -291,7 +307,9 @@
                 :disabled="true"
                 auto-complete="off"
               >
-                <template slot="prepend">https://image.calibur.tv/</template>
+                <template slot="prepend">
+                  https://image.calibur.tv/
+                </template>
               </el-input>
             </el-col>
             <el-col
@@ -309,7 +327,7 @@
                   :accept="imageUploadAccept"
                 >
                   <el-button type="text">
-                    <i class="el-icon-plus"/>
+                    <i class="el-icon-plus" />
                     上传
                   </el-button>
                 </el-upload>
@@ -323,7 +341,8 @@
                 :ref="`popoverPoster-${item.id}`"
                 placement="left"
                 width="200"
-                trigger="hover">
+                trigger="hover"
+              >
                 <img :src="imagePrefix + item.avatar">
               </el-popover>
               <a
@@ -332,7 +351,7 @@
                 type="text"
                 target="_blank"
               >
-                <i class="el-icon-view"/>&nbsp;预览
+                <i class="el-icon-view" />&nbsp;预览
               </a>
             </el-col>
           </el-form-item>
@@ -372,10 +391,10 @@
             </el-select>
           </el-form-item>
           <el-form-item label="外站视频">
-            <el-switch v-model="item.other_site_video"/>
+            <el-switch v-model="item.other_site_video" />
           </el-form-item>
           <el-form-item label="已完结">
-            <el-switch v-model="item.end"/>
+            <el-switch v-model="item.end" />
           </el-form-item>
         </el-form>
       </el-tab-pane>
@@ -653,7 +672,7 @@ export default {
     handleTabsEdit(targetName, action) {
       if (action === 'add') {
         const rank = this.seasons[this.seasons.length - 1].rank + 1
-        let newTabName = `第${rank}季`
+        const newTabName = `第${rank}季`
         this.seasons.push({
           id: 0,
           name: '',

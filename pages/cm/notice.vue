@@ -7,7 +7,7 @@
             type="primary"
             @click="createNotice('create')"
           >
-            <i class="el-icon-plus"/>
+            <i class="el-icon-plus" />
             发布通知
           </el-button>
         </el-col>
@@ -50,12 +50,16 @@
             size="small"
             type="primary"
             @click="updateNotice(scope.row)"
-          >更新</el-button>
+          >
+            更新
+          </el-button>
           <el-button
             size="small"
             type="danger"
             @click="deleteNotice(scope.$index, scope.row)"
-          >删除</el-button>
+          >
+            删除
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -76,7 +80,7 @@ export default {
     this.getData()
   },
   methods: {
-    async getData() {
+    getData() {
       this.pageLoading = true
       this.$axios
         .$get('user/notice/list')

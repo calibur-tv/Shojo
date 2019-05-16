@@ -1,7 +1,7 @@
 <template>
   <div
-    v-loading="pageLoading"
     id="user-feedback"
+    v-loading="pageLoading"
   >
     <el-table
       :data="pageData"
@@ -20,7 +20,7 @@
       />
       <el-table-column label="浏览器">
         <template slot-scope="scope">
-          <div v-html="computeUA(scope.row.ua)"/>
+          <div v-html="computeUA(scope.row.ua)" />
         </template>
       </el-table-column>
       <el-table-column label="操作">
@@ -29,7 +29,9 @@
             size="small"
             type="primary"
             @click="remove(scope.$index, scope.row.id)"
-          >确认</el-button>
+          >
+            确认
+          </el-button>
           <router-link
             v-if="scope.row.user_id != 0"
             :to="`/user/show/?id=${scope.row.user_id}`"
@@ -38,7 +40,9 @@
               size="small"
               type="primary"
               style="margin-left: 10px"
-            >查看用户</el-button>
+            >
+              查看用户
+            </el-button>
           </router-link>
         </template>
       </el-table-column>
@@ -91,7 +95,7 @@ export default {
     this.getData()
   },
   methods: {
-    async getData() {
+    getData() {
       this.pageLoading = true
       this.$axios
         .$get('admin/user/feedback/list')
@@ -134,7 +138,7 @@ export default {
         result.browser.name
       } - ${result.browser.version}`
     },
-    async remove(index, id) {
+    remove(index, id) {
       if (this.canNot('操作用户反馈')) {
         return
       }

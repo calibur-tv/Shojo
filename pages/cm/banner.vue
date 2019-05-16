@@ -81,8 +81,8 @@
 
 <template>
   <div
-    v-loading="pageLoading"
     id="cm-banner"
+    v-loading="pageLoading"
   >
     <img
       v-if="form.url"
@@ -98,7 +98,7 @@
         type="primary"
         @click="openCreateModal"
       >
-        <i class="el-icon-upload"/>
+        <i class="el-icon-upload" />
         上传图片
       </el-button>
     </header>
@@ -131,7 +131,9 @@
           <button
             class="edit-btn"
             @click="openEditModal(item)"
-          >编辑</button>
+          >
+            编辑
+          </button>
           <el-switch
             v-model="item.use"
             @change="handleSwitch(item)"
@@ -147,11 +149,11 @@
     >
       <el-form label-position="top">
         <el-form-item label="选择番剧">
-          <bangumi-search v-model="form.bangumi_id"/>
+          <bangumi-search v-model="form.bangumi_id" />
         </el-form-item>
         <el-form-item label="选择作者">
           {{ form.user_nickname }}
-          <user-search v-model="form.user_id"/>
+          <user-search v-model="form.user_id" />
         </el-form-item>
       </el-form>
     </v-dialog>
@@ -174,7 +176,9 @@
             <el-button
               size="small"
               type="primary"
-            >点击更换</el-button>
+            >
+              点击更换
+            </el-button>
           </el-upload>
         </el-form-item>
         <el-form-item label="选择番剧">
@@ -185,7 +189,7 @@
         </el-form-item>
         <el-form-item label="选择作者">
           {{ form.user_nickname }}
-          <user-search v-model="form.user_id"/>
+          <user-search v-model="form.user_id" />
         </el-form-item>
       </el-form>
     </v-dialog>
@@ -216,7 +220,7 @@ export default {
     this.getData()
   },
   methods: {
-    async getData() {
+    getData() {
       this.pageLoading = true
       this.$axios
         .$get('admin/banner/list')
@@ -263,7 +267,7 @@ export default {
       }
       this.showCreateModal = true
     },
-    async handleBannerEditSubmit() {
+    handleBannerEditSubmit() {
       if (this.canNot('修改主站背景')) {
         return
       }
@@ -286,7 +290,7 @@ export default {
           this.modalLoading = false
         })
     },
-    async handleBannerCreateSubmit() {
+    handleBannerCreateSubmit() {
       if (this.canNot('修改主站背景')) {
         return
       }

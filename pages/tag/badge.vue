@@ -5,21 +5,21 @@
         type="primary"
         @click="openCreateUserBadgeDialog"
       >
-        <i class="el-icon-plus"/>
+        <i class="el-icon-plus" />
         创建徽章
       </el-button>
       <el-button
         type="primary"
         @click="openUserBadgesDialog"
       >
-        <i class="el-icon-search"/>
+        <i class="el-icon-search" />
         搜索用户徽章
       </el-button>
       <el-button
         type="primary"
         @click="openBatchSetDialog = true"
       >
-        <i class="el-icon-plus"/>
+        <i class="el-icon-plus" />
         批量授予徽章
       </el-button>
       <v-dialog
@@ -86,7 +86,7 @@
                   :accept="imageUploadAccept"
                 >
                   <el-button type="text">
-                    <i class="el-icon-plus"/>
+                    <i class="el-icon-plus" />
                     上传
                   </el-button>
                 </el-upload>
@@ -147,7 +147,9 @@
         <template slot-scope="scope">
           <div
             @click="showBadgeUsers(scope.row)"
-          >{{ scope.row.user_count }}</div>
+          >
+            {{ scope.row.user_count }}
+          </div>
         </template>
       </el-table-column>
       <el-table-column label="操作">
@@ -156,17 +158,23 @@
             size="small"
             type="danger"
             @click="deleteBadge(scope.$index, scope.row)"
-          >删除</el-button>
+          >
+            删除
+          </el-button>
           <el-button
             size="small"
             type="primary"
             @click="updateUserBadge(scope.row)"
-          >更新</el-button>
+          >
+            更新
+          </el-button>
           <el-button
             size="small"
             type="success"
             @click="setBadgeUser(scope.row)"
-          >授予</el-button>
+          >
+            授予
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -241,7 +249,9 @@
               size="small"
               type="danger"
               @click="removeUserBadge(scope.$index, scope.row)"
-            >撤销授权</el-button>
+            >
+              撤销授权
+            </el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -356,7 +366,7 @@ export default {
     this.getData()
   },
   methods: {
-    async getData() {
+    getData() {
       this.pageLoading = true
       this.$axios
         .$get('admin/badge/all')

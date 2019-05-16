@@ -68,7 +68,9 @@
               style="margin-left: 10px"
               type="primary"
               @click="validateAndSaveBangumiId"
-            >确认</el-button>
+            >
+              确认
+            </el-button>
           </el-tooltip>
         </el-col>
       </el-row>
@@ -97,7 +99,9 @@
               :disabled="saver.prefix"
               type="primary"
               @click="validateAndSavePrefix"
-            >确认</el-button>
+            >
+              确认
+            </el-button>
           </el-tooltip>
         </el-col>
       </el-form-item>
@@ -146,7 +150,9 @@
               :disabled="saver.parts"
               type="primary"
               @click="validateAndSaveParts"
-            >确认</el-button>
+            >
+              确认
+            </el-button>
           </el-tooltip>
         </el-col>
       </el-form-item>
@@ -178,7 +184,9 @@
               :disabled="saver.suffix"
               type="primary"
               @click="handleSaverSuffix"
-            >确认</el-button>
+            >
+              确认
+            </el-button>
           </el-tooltip>
         </el-col>
       </el-form-item>
@@ -216,7 +224,9 @@
               :disabled="saver.format"
               type="primary"
               @click="handleSaverFormat"
-            >确认</el-button>
+            >
+              确认
+            </el-button>
           </el-tooltip>
         </el-col>
       </el-form-item>
@@ -247,12 +257,14 @@
               :disabled="saver.names"
               type="primary"
               @click="validateAndSaveNames"
-            >确认</el-button>
+            >
+              确认
+            </el-button>
           </el-tooltip>
         </el-col>
       </el-form-item>
       <el-form-item label="自建资源">
-        <el-switch v-model="form.haveSelfResource"/>
+        <el-switch v-model="form.haveSelfResource" />
       </el-form-item>
       <el-form-item
         label="外链资源"
@@ -280,7 +292,9 @@
               :disabled="saver.videos"
               type="primary"
               @click="validateAndSaveUrls"
-            >确认</el-button>
+            >
+              确认
+            </el-button>
           </el-tooltip>
         </el-col>
       </el-form-item>
@@ -291,7 +305,7 @@
           saver.suffix &&
           saver.parts &&
           saver.format &&
-        saver.videos"
+          saver.videos"
       >
         <el-form-item label="视频预览">
           <el-card
@@ -325,7 +339,9 @@
           <el-button
             type="primary"
             @click="submitForm"
-          >确认并上传</el-button>
+          >
+            确认并上传
+          </el-button>
         </el-form-item>
       </template>
       <template v-else>
@@ -336,7 +352,9 @@
           />
         </el-form-item>
         <el-form-item>
-          <el-button @click="resetForm">重置</el-button>
+          <el-button @click="resetForm">
+            重置
+          </el-button>
         </el-form-item>
       </template>
     </el-form>
@@ -481,11 +499,9 @@ export default {
           this.$toast.error('外链视频的个数大于视频的总数')
           return
         }
-      } else {
-        if (arr.length !== length) {
-          this.$toast.error('资源个数')
-          return
-        }
+      } else if (arr.length !== length) {
+        this.$toast.error('资源个数')
+        return
       }
       let goOut = false
       const result = []
@@ -545,7 +561,7 @@ export default {
           this.loadingSeason = false
         })
     },
-    async submitForm() {
+    submitForm() {
       if (this.canNot('操作视频')) {
         return
       }
@@ -571,21 +587,21 @@ export default {
           poster: this.form.posters[idx],
           resource: this.form.haveSelfResource
             ? {
-                video: {
-                  '720': {
-                    useLyc: false,
-                    src: selfUrl
-                  },
-                  '1080': {
-                    useLyc: false,
-                    src: ''
-                  }
+              video: {
+                '720': {
+                  useLyc: false,
+                  src: selfUrl
                 },
-                lyric: {
-                  zh: '',
-                  en: ''
+                '1080': {
+                  useLyc: false,
+                  src: ''
                 }
+              },
+              lyric: {
+                zh: '',
+                en: ''
               }
+            }
             : null
         })
       }

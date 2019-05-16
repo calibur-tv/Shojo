@@ -14,13 +14,13 @@
 
 <template>
   <div
-    v-loading="loading"
     id="role-list"
+    v-loading="loading"
   >
     <header class="page-header">
       <el-row>
         <el-col :span="10">
-          <bangumi-search @search="handleBangumiSearch"/>
+          <bangumi-search @search="handleBangumiSearch" />
         </el-col>
         <el-col
           :offset="1"
@@ -31,7 +31,9 @@
             icon="delete"
             size="medium"
             @click="removeStar"
-          >撤销应援</el-button>
+          >
+            撤销应援
+          </el-button>
         </el-col>
       </el-row>
     </header>
@@ -51,7 +53,7 @@
           class="avatar"
         >
           <img :src="$resize(scope.row.avatar, { width: 120 })">
-          <span v-text="scope.row.name"/>
+          <span v-text="scope.row.name" />
         </a>
       </el-table-column>
       <el-table-column
@@ -68,7 +70,9 @@
             <el-button
               size="small"
               type="primary"
-            >编辑</el-button>
+            >
+              编辑
+            </el-button>
           </router-link>
         </template>
       </el-table-column>
@@ -87,7 +91,7 @@ export default {
     }
   },
   methods: {
-    async getData() {
+    getData() {
       if (this.loading) {
         return
       }

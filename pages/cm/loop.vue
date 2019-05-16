@@ -7,7 +7,7 @@
             type="primary"
             @click="createProcess"
           >
-            <i class="el-icon-plus"/>
+            <i class="el-icon-plus" />
             添加轮播
           </el-button>
         </el-col>
@@ -23,10 +23,10 @@
           label-width="80px"
         >
           <el-form-item label="标题">
-            <el-input v-model.trim="form.title"/>
+            <el-input v-model.trim="form.title" />
           </el-form-item>
           <el-form-item label="链接">
-            <el-input v-model.trim="form.link"/>
+            <el-input v-model.trim="form.link" />
           </el-form-item>
           <el-form-item label="封面">
             <el-upload
@@ -42,7 +42,9 @@
               <el-button
                 size="small"
                 type="primary"
-              >点击上传</el-button>
+              >
+                点击上传
+              </el-button>
             </el-upload>
           </el-form-item>
           <el-form-item label="时间">
@@ -67,7 +69,9 @@
               :loading="submitting"
               type="primary"
               @click="onSubmit"
-            >提交</el-button>
+            >
+              提交
+            </el-button>
           </el-form-item>
         </el-form>
       </v-dialog>
@@ -138,18 +142,24 @@
               size="small"
               type="primary"
               @click="updateProcess(scope.$index, scope.row)"
-            >更新</el-button>
+            >
+              更新
+            </el-button>
             <el-button
               size="small"
               type="danger"
               @click="remove(scope.$index, scope.row)"
-            >下架</el-button>
+            >
+              下架
+            </el-button>
             <el-button
               v-if="scope.$index"
               size="small"
               type="warning"
               @click="sort(scope.$index, scope.row)"
-            >置顶</el-button>
+            >
+              置顶
+            </el-button>
           </template>
         </template>
       </el-table-column>
@@ -220,7 +230,7 @@ export default {
     this.getData()
   },
   methods: {
-    async getData() {
+    getData() {
       this.pageLoading = true
       this.$axios
         .$get('admin/cm/loop/list')
@@ -251,7 +261,7 @@ export default {
     handleImageUploadSuccess(res) {
       this.form.poster = `${this.imagePrefix}${res.data.url}`
     },
-    async onSubmit() {
+    onSubmit() {
       if (this.canNot('更改首页轮播')) {
         return
       }
@@ -287,7 +297,7 @@ export default {
         })
       }
     },
-    async remove(index, row) {
+    remove(index, row) {
       if (this.canNot('更改首页轮播')) {
         return
       }
@@ -311,7 +321,7 @@ export default {
         })
         .catch(() => {})
     },
-    async sort(index, row) {
+    sort(index, row) {
       if (this.canNot('更改首页轮播')) {
         return
       }

@@ -7,7 +7,7 @@
             type="primary"
             @click="showCreateModal = true"
           >
-            <i class="el-icon-plus"/>
+            <i class="el-icon-plus" />
             添加友链
           </el-button>
         </el-col>
@@ -19,10 +19,10 @@
       >
         <el-form>
           <el-form-item label="站名">
-            <el-input v-model.trim="name"/>
+            <el-input v-model.trim="name" />
           </el-form-item>
           <el-form-item label="链接">
-            <el-input v-model.trim="link"/>
+            <el-input v-model.trim="link" />
           </el-form-item>
         </el-form>
       </v-dialog>
@@ -52,7 +52,9 @@
             size="small"
             type="danger"
             @click="removeFriendLink(scope.$index, scope.row)"
-          >删除</el-button>
+          >
+            删除
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -80,7 +82,7 @@ export default {
     this.getData()
   },
   methods: {
-    async getData() {
+    getData() {
       this.pageLoading = true
       this.$axios
         .$get('admin/web/friend_link/list')
@@ -95,7 +97,7 @@ export default {
           this.pageLoading = false
         })
     },
-    async createFriendLink() {
+    createFriendLink() {
       if (this.canNot('修改友情链接')) {
         return
       }
@@ -115,7 +117,7 @@ export default {
           this.link = ''
         })
     },
-    async removeFriendLink(index, row) {
+    removeFriendLink(index, row) {
       this.$confirm('确定要删除吗?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',

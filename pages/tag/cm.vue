@@ -10,8 +10,8 @@
 
 <template>
   <div
-    v-loading="pageLoading"
     id="tag-cm"
+    v-loading="pageLoading"
   >
     <div class="page-header">
       <el-row>
@@ -24,7 +24,9 @@
               v-for="tag in tags"
               :key="tag.id"
               :label="tag.id"
-            >{{ tag.name }}</el-radio-button>
+            >
+              {{ tag.name }}
+            </el-radio-button>
           </el-radio-group>
         </el-col>
         <el-col :span="4">
@@ -32,7 +34,7 @@
             type="primary"
             @click="showCreateModal = true"
           >
-            <i class="el-icon-plus"/>
+            <i class="el-icon-plus" />
             添加番剧
           </el-button>
         </el-col>
@@ -54,7 +56,7 @@
             </el-select>
           </el-form-item>
           <el-form-item label="番剧">
-            <bangumi-search @search="handleBangumiSearch"/>
+            <bangumi-search @search="handleBangumiSearch" />
           </el-form-item>
         </el-form>
       </v-dialog>
@@ -74,14 +76,17 @@
         label="名称"
       />
       <el-table-column
-        label="操作">
+        label="操作"
+      >
         <template slot-scope="scope">
           <el-button
             type="danger"
             size="small"
             icon="edit"
             @click="deleteBangumi(scope.row)"
-          >删除</el-button>
+          >
+            删除
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -120,7 +125,7 @@ export default {
   },
   mounted() {},
   methods: {
-    async getData() {
+    getData() {
       this.pageLoading = true
       this.$axios
         .$get('/flow/recommended', {
@@ -129,7 +134,7 @@ export default {
         .then(data => {
           this.list = data
           if (data.length) {
-            this.selectedTagId = data[0]['tag']['id']
+            this.selectedTagId = data[0].tag.id
             this.submitTagId = this.selectedTagId
           }
           this.pageLoading = false

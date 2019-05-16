@@ -8,21 +8,22 @@ module.exports = {
     parser: 'babel-eslint'
   },
   extends: [
-    'plugin:vue/recommended',
-    'plugin:prettier/recommended'
-  ],
-  // required to lint *.vue files
-  plugins: [
-    'vue',
-    'prettier'
+    '@nuxtjs',
+    'plugin:nuxt/recommended'
   ],
   // add your custom rules here
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-console': 'warn',
+    'no-debugger': 'warn',
     'no-undef': 'error',
+    'no-else-return': 'warn',
     'no-unused-vars': 'warn',
-    'no-else-return': 'warn'
+    'no-unreachable': 'warn',
+    'no-control-regex': 'warn',
+    'no-empty': 'off',
+    'camelcase': 'off',
+    'vue/no-unused-components': 'warn',
+    'arrow-parens': [1, 'as-needed']
   },
   globals: {
     _: true

@@ -36,8 +36,8 @@
 
 <template>
   <div
-    v-loading="searching"
     id="user-show"
+    v-loading="searching"
   >
     <header class="page-header">
       <user-search
@@ -136,7 +136,9 @@
           type="warning"
           size="mini"
           @click="addUserToTrial"
-        >加入审核列表</el-button>
+        >
+          加入审核列表
+        </el-button>
         <el-button
           type="primary"
           size="mini"
@@ -198,7 +200,8 @@
           v-else
           placement="right"
           width="220"
-          trigger="hover">
+          trigger="hover"
+        >
           <el-date-picker
             v-model="banned_to"
             :picker-options="bannedOpts"
@@ -260,7 +263,9 @@
           label="封禁状态"
         >
           <template slot-scope="scope">
-            <el-tag v-if="scope.row.blocked !== '1'">正常</el-tag>
+            <el-tag v-if="scope.row.blocked !== '1'">
+              正常
+            </el-tag>
             <el-tag
               v-else
               type="danger"
@@ -560,7 +565,7 @@ export default {
     }
   },
   methods: {
-    async getInvite() {
+    getInvite() {
       if (this.showInvite) {
         this.showInvite = false
         return
@@ -586,7 +591,7 @@ export default {
           this.loadingInvite = false
         })
     },
-    async freezeUser() {
+    freezeUser() {
       if (this.canNot('禁言用户')) {
         return
       }
@@ -608,7 +613,7 @@ export default {
           this.banning = false
         })
     },
-    async freeUser() {
+    freeUser() {
       if (this.canNot('解除用户禁言')) {
         return
       }
@@ -625,7 +630,7 @@ export default {
           this.banning = false
         })
     },
-    async getTransactions(page) {
+    getTransactions(page) {
       if (page <= this.pageState.max) {
         this.pageState.cur = page
         return
@@ -657,7 +662,7 @@ export default {
           this.pageLoading = false
         })
     },
-    async getUserData(data) {
+    getUserData(data) {
       if (this.searching) {
         return
       }
@@ -682,7 +687,7 @@ export default {
           this.searching = false
         })
     },
-    async addUserToTrial() {
+    addUserToTrial() {
       if (this.canNot('添加用户到审核池')) {
         return
       }
@@ -700,7 +705,7 @@ export default {
           this.loading = false
         })
     },
-    async recover() {
+    recover() {
       if (this.canNot('解禁用户')) {
         return
       }
@@ -718,7 +723,7 @@ export default {
           this.loading = false
         })
     },
-    async block() {
+    block() {
       if (this.canNot('封禁用户')) {
         return
       }
@@ -846,7 +851,7 @@ export default {
       })
         .then(({ value }) => {
           const data = +value
-          if (data !== data) {
+          if (data !== value) {
             this.$toast.error('错误的格式')
             return
           }
@@ -872,7 +877,7 @@ export default {
       })
         .then(({ value }) => {
           const data = +value
-          if (data !== data) {
+          if (data !== value) {
             this.$toast.error('错误的格式')
             return
           }

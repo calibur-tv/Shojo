@@ -1,11 +1,11 @@
 {
-  "src_dir"            :   "./Shojo/dist",
+  "src_dir"            :   "../Shojo/dist",
   "bucket"             :   "console-static",
   "overwrite"          :   true,
   "rescan_local"       :   true,
   "skip_suffixes"      :   ".DS_Store",
   "key_prefix"         :   "",
-  "log_file"           :   "./Shojo/deploy/upload.log",
+  "log_file"           :   "./upload.log",
   "log_level"          :   "info",
   "log_stdout"         :   true,
   "file_type"          :   0,

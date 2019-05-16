@@ -36,7 +36,9 @@
             type="primary"
             size="mini"
             @click="beginEditItem(scope.row)"
-          >编辑</el-button>
+          >
+            编辑
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -48,7 +50,7 @@
     >
       <el-form label-width="80px">
         <el-form-item label="名称">
-          <el-input v-model="editingItem.name"/>
+          <el-input v-model="editingItem.name" />
         </el-form-item>
         <el-form-item label="封面">
           <el-upload
@@ -64,7 +66,7 @@
               type="primary"
               size="mini"
             >
-              <i class="el-icon-plus"/>
+              <i class="el-icon-plus" />
               上传
             </el-button>
             &nbsp;
@@ -82,7 +84,7 @@
               type="text"
               target="_blank"
             >
-              <i class="el-icon-view"/>&nbsp;预览
+              <i class="el-icon-view" />&nbsp;预览
             </a>
           </el-upload>
         </el-form-item>
@@ -115,7 +117,7 @@ export default {
     this.getData()
   },
   methods: {
-    async getData() {
+    getData() {
       if (!/\d+/.test(this.id)) {
         return
       }
@@ -141,7 +143,7 @@ export default {
       }
       this.toggleEditModal = true
     },
-    async submitCartoonEdit() {
+    submitCartoonEdit() {
       if (this.canNot('编辑漫画')) {
         return
       }

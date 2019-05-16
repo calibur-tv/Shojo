@@ -35,7 +35,7 @@
       class="bangumi-search-item"
     >
       <img :src="$resize(item.avatar, { width: 48 })">
-      <span v-text="item.name"/>
+      <span v-text="item.name" />
     </el-option>
   </el-select>
 </template>
@@ -111,7 +111,7 @@ export default {
           : option.name.indexOf(query) > -1
       })
     },
-    async getData() {
+    getData() {
       if (this.loading) {
         return
       }

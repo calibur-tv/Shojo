@@ -1,7 +1,7 @@
 <template>
   <div
-    v-loading="pageLoading"
     id="tag-list"
+    v-loading="pageLoading"
   >
     <header class="page-header">
       <el-row>
@@ -27,7 +27,7 @@
             type="primary"
             @click="showCreateModal = true"
           >
-            <i class="el-icon-plus"/>
+            <i class="el-icon-plus" />
             添加标签
           </el-button>
         </el-col>
@@ -48,14 +48,17 @@
         label="名称"
       />
       <el-table-column
-        label="操作">
+        label="操作"
+      >
         <template slot-scope="scope">
           <el-button
             type="primary"
             size="small"
             icon="edit"
             @click="editTagName(scope.row)"
-          >修改名称</el-button>
+          >
+            修改名称
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -87,7 +90,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="名称">
-          <el-input v-model.trim="createForm.name"/>
+          <el-input v-model.trim="createForm.name" />
         </el-form-item>
       </el-form>
     </v-dialog>
@@ -129,7 +132,7 @@ export default {
     this.getData()
   },
   methods: {
-    async getData() {
+    getData() {
       this.pageLoading = true
       this.$axios
         .$get('admin/tag/all', {

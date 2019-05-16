@@ -1,7 +1,7 @@
 <template>
   <div
-    v-loading="pageLoading"
     id="user-dalao"
+    v-loading="pageLoading"
   >
     <el-table
       :data="pageData"
@@ -38,7 +38,9 @@
             <el-button
               type="primary"
               size="mini"
-            >查看详情</el-button>
+            >
+              查看详情
+            </el-button>
           </router-link>
         </template>
       </el-table-column>
@@ -60,7 +62,7 @@ export default {
     this.getData(1)
   },
   methods: {
-    async getData(page) {
+    getData(page) {
       if (page <= this.pageState.max) {
         this.pageState.cur = page
         return

@@ -42,16 +42,16 @@
         </el-select>
       </el-form-item>
       <el-form-item label="外站视频">
-        <el-switch v-model="form.others_site_video"/>
+        <el-switch v-model="form.others_site_video" />
       </el-form-item>
       <el-form-item label="已完结">
-        <el-switch v-model="form.end"/>
+        <el-switch v-model="form.end" />
       </el-form-item>
       <el-form-item label="有视频">
-        <el-switch v-model="form.has_video"/>
+        <el-switch v-model="form.has_video" />
       </el-form-item>
       <el-form-item label="有漫画">
-        <el-switch v-model="form.has_cartoon"/>
+        <el-switch v-model="form.has_cartoon" />
       </el-form-item>
       <el-form-item
         label="上映日期"
@@ -94,7 +94,9 @@
             :disabled="true"
             auto-complete="off"
           >
-            <template slot="prepend">https://image.calibur.tv/</template>
+            <template slot="prepend">
+              https://image.calibur.tv/
+            </template>
           </el-input>
         </el-col>
         <el-col
@@ -112,7 +114,7 @@
               :accept="imageUploadAccept"
             >
               <el-button type="text">
-                <i class="el-icon-plus"/>
+                <i class="el-icon-plus" />
                 上传
               </el-button>
             </el-upload>
@@ -126,7 +128,8 @@
             ref="popoverAvatar"
             placement="left"
             width="200"
-            trigger="hover">
+            trigger="hover"
+          >
             <img :src="imagePrefix + form.avatar">
           </el-popover>
           <a
@@ -135,7 +138,7 @@
             type="text"
             target="_blank"
           >
-            <i class="el-icon-view"/>&nbsp;预览
+            <i class="el-icon-view" />&nbsp;预览
           </a>
         </el-col>
       </el-form-item>
@@ -150,7 +153,9 @@
             :disabled="true"
             auto-complete="off"
           >
-            <template slot="prepend">https://image.calibur.tv/</template>
+            <template slot="prepend">
+              https://image.calibur.tv/
+            </template>
           </el-input>
         </el-col>
         <el-col
@@ -168,7 +173,7 @@
               :accept="imageUploadAccept"
             >
               <el-button type="text">
-                <i class="el-icon-plus"/>
+                <i class="el-icon-plus" />
                 上传
               </el-button>
             </el-upload>
@@ -192,7 +197,7 @@
             type="text"
             target="_blank"
           >
-            <i class="el-icon-view"/>&nbsp;预览
+            <i class="el-icon-view" />&nbsp;预览
           </a>
         </el-col>
       </el-form-item>
@@ -215,7 +220,9 @@
           <el-button
             type="primary"
             @click="submitForm"
-          >立即创建</el-button>
+          >
+            立即创建
+          </el-button>
         </el-col>
       </el-form-item>
     </el-form>

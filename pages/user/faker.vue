@@ -1,14 +1,14 @@
 <template>
   <div
-    v-loading="pageLoading"
     id="user-faker"
+    v-loading="pageLoading"
   >
     <header class="page-header">
       <el-button
         type="primary"
         @click="createNewFakerUser"
       >
-        <i class="el-icon-plus"/>
+        <i class="el-icon-plus" />
         创建运营号
       </el-button>
     </header>
@@ -39,7 +39,9 @@
           <el-button
             type="danger"
             @click="newLife(scope.$index, scope.row)"
-          >账号认领</el-button>
+          >
+            账号认领
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -60,7 +62,7 @@ export default {
     this.getData()
   },
   methods: {
-    async getData() {
+    getData() {
       this.pageLoading = true
       this.$axios
         .$get('admin/user/faker/list')

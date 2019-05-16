@@ -1,8 +1,7 @@
 const webpack = require('webpack')
-const CompressionPlugin = require('compression-webpack-plugin')
-const BrotliPlugin = require('brotli-webpack-plugin')
 const isDev = process.env.NODE_ENV === 'development'
 const path = require('path')
+const LodashWebpackPlugin = require('lodash-webpack-plugin')
 const qiniu = require('./deploy/qiniu')
 const resolve = dir => path.join(__dirname, '', dir)
 const apiMap = {
@@ -32,7 +31,7 @@ module.exports = {
       {
         rel: 'icon',
         type: 'image/x-icon',
-        href: 'https://static.calibur.tv/favicon.ico'
+        href: 'https://file.calibur.tv/favicon.ico'
       }
     ]
   },
@@ -131,28 +130,21 @@ module.exports = {
       }
     },
     extractCSS: true,
-    plugins: (() => {
-      const result = [
-        new webpack.ProvidePlugin({
-          _: 'lodash'
-        }),
-        new webpack.ContextReplacementPlugin(
-          /moment[\\\/]locale$/,
-          /^\.\/(zh-cn)$/
-        )
-      ]
-      return isDev
-        ? result.concat([])
-        : result.concat([
-            new CompressionPlugin({
-              test: /\.(js|css|html)$/
-            }),
-            new BrotliPlugin({
-              test: /\.(js|css|html)$/
-            })
-          ])
-    })(),
+    plugins: [
+      new LodashWebpackPlugin(),
+      new webpack.ProvidePlugin({
+        _: 'lodash'
+      }),
+      new webpack.ContextReplacementPlugin(
+        /moment[\\\/]locale$/,
+        /^\.\/(zh-cn)$/
+      )
+    ],
     publicPath: isDev ? '/_nuxt/' : `${qiniu.host}${qiniu.key_prefix}`,
-    babel: {}
+    babel: {
+      plugins: [
+        'lodash'
+      ]
+    }
   }
 }

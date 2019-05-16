@@ -1,7 +1,7 @@
 <template>
   <div
-    v-loading="pageLoading"
     id="video-season"
+    v-loading="pageLoading"
   >
     <div class="page-header">
       <el-form
@@ -43,8 +43,11 @@
         </el-form-item>
         <el-form-item>
           <el-button
-            type="primary" 
-            @click="getData">查询</el-button>
+            type="primary"
+            @click="getData"
+          >
+            查询
+          </el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -288,7 +291,7 @@ export default {
     this.getData()
   },
   methods: {
-    async getData() {
+    getData() {
       this.pageLoading = true
       this.$axios
         .$get('admin/season/search_all', {

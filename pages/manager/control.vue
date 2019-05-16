@@ -1,7 +1,7 @@
 <template>
   <div
-    v-loading="loading"
     id="manager-control"
+    v-loading="loading"
   >
     <header
       v-if="isKing"
@@ -11,7 +11,7 @@
         type="primary"
         @click="addAdmin"
       >
-        <i class="el-icon-plus"/>
+        <i class="el-icon-plus" />
         添加管理员
       </el-button>
     </header>
@@ -42,12 +42,16 @@
             type="primary"
             size="mini"
             @click="checkUserRole(scope.row)"
-          >查看权限</el-button>
+          >
+            查看权限
+          </el-button>
           <el-button
             type="danger"
             size="mini"
             @click="removeFromAdmin(scope.$index, scope.row.id)"
-          >删除权限</el-button>
+          >
+            删除权限
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -78,7 +82,9 @@
               type="danger"
               size="mini"
               @click="removeUserRole(scope.row)"
-            >移除权限</el-button>
+            >
+              移除权限
+            </el-button>
           </template>
         </el-table-column>
       </el-table>

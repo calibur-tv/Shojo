@@ -1,47 +1,54 @@
 <template>
   <div class="login-container">
-    <el-form 
-      ref="loginForm" 
-      :model="loginForm" 
-      :rules="loginRules" 
-      class="login-form" 
-      auto-complete="on" 
-      label-position="left">
-      <h3 class="title">calibur.tv 管理后台</h3>
+    <el-form
+      ref="loginForm"
+      :model="loginForm"
+      :rules="loginRules"
+      class="login-form"
+      auto-complete="on"
+      label-position="left"
+    >
+      <h3 class="title">
+        calibur.tv 管理后台
+      </h3>
       <el-form-item prop="username">
         <span class="svg-container">
-          <v-icon name="user"/>
+          <v-icon name="user" />
         </span>
-        <el-input 
-          v-model="loginForm.username" 
-          name="username" 
-          type="text" 
-          auto-complete="on" 
-          placeholder="账号" />
+        <el-input
+          v-model="loginForm.username"
+          name="username"
+          type="text"
+          auto-complete="on"
+          placeholder="账号"
+        />
       </el-form-item>
       <el-form-item prop="password">
         <span class="svg-container">
-          <v-icon name="unlock-alt"/>
+          <v-icon name="unlock-alt" />
         </span>
         <el-input
-          :type="pwdType"
           v-model="loginForm.password"
+          :type="pwdType"
           name="password"
           auto-complete="on"
           placeholder="密码"
-          @keyup.enter.native="handleLogin" />
-        <span 
-          class="show-pwd" 
-          @click="showPwd">
-          <v-icon name="eye"/>
+          @keyup.enter.native="handleLogin"
+        />
+        <span
+          class="show-pwd"
+          @click="showPwd"
+        >
+          <v-icon name="eye" />
         </span>
       </el-form-item>
       <el-form-item>
-        <el-button 
-          :loading="loading" 
-          type="primary" 
-          style="width:100%;" 
-          @click.native.prevent="handleLogin">
+        <el-button
+          :loading="loading"
+          type="primary"
+          style="width:100%;"
+          @click.native.prevent="handleLogin"
+        >
           登录
         </el-button>
       </el-form-item>
@@ -88,7 +95,7 @@ export default {
   },
   watch: {
     $route: {
-      handler: function(route) {
+      handler: function (route) {
         this.redirect = route.query && route.query.redirect
       },
       immediate: true

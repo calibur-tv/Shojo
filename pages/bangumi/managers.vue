@@ -101,15 +101,17 @@
 
 <template>
   <div
-    v-loading="loading"
     id="bangumi-list"
+    v-loading="loading"
   >
     <header class="page-header">
       <el-button
         type="primary"
         round
         @click="switchPage"
-      >{{ sort === 'bangumi' ? '切换到番剧视角' : '切换到版主视角' }}</el-button>
+      >
+        {{ sort === 'bangumi' ? '切换到番剧视角' : '切换到版主视角' }}
+      </el-button>
     </header>
     <ul
       v-if="sort === 'bangumi'"
@@ -197,7 +199,7 @@ export default {
     this.getData()
   },
   methods: {
-    async getData() {
+    getData() {
       if (this.loading) {
         return
       }

@@ -54,15 +54,15 @@ export default params => {
                   captcha
                 })
               : params({
-                  data: {
-                    geetest_challenge: result.geetest_challenge,
-                    geetest_seccode: result.geetest_seccode,
-                    geetest_validate: result.geetest_validate,
-                    payload: data.payload,
-                    success: data.success
-                  },
-                  captcha
-                })
+                data: {
+                  geetest_challenge: result.geetest_challenge,
+                  geetest_seccode: result.geetest_seccode,
+                  geetest_validate: result.geetest_validate,
+                  payload: data.payload,
+                  success: data.success
+                },
+                captcha
+              })
           })
           captcha.onError(err => {
             error && error(err)

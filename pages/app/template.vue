@@ -10,7 +10,7 @@
             type="primary"
             @click="showCreateModal = true"
           >
-            <i class="el-icon-plus"/>
+            <i class="el-icon-plus" />
             更新
           </el-button>
         </el-col>
@@ -94,7 +94,7 @@ export default {
     this.getData()
   },
   methods: {
-    async getData() {
+    getData() {
       this.pageLoading = true
       this.$axios
         .$get('app/template')
@@ -109,7 +109,7 @@ export default {
           this.pageLoading = false
         })
     },
-    async submit() {
+    submit() {
       if (this.canNot('发布页面模板')) {
         return
       }

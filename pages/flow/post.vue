@@ -52,18 +52,18 @@
 
 <template>
   <div
-    v-loading="loading"
     id="post-flow"
+    v-loading="loading"
   >
     <div class="page-header">
-      <el-radio-group 
+      <el-radio-group
         v-model="selectedTab"
         @change="handleTabSwitch"
       >
-        <el-radio-button label="待审 - 不在首页"/>
-        <el-radio-button label="待审 - 在首页"/>
-        <el-radio-button label="已审 - 不在首页"/>
-        <el-radio-button label="已审 - 在首页"/>
+        <el-radio-button label="待审 - 不在首页" />
+        <el-radio-button label="待审 - 在首页" />
+        <el-radio-button label="已审 - 不在首页" />
+        <el-radio-button label="已审 - 在首页" />
       </el-radio-group>
       <div class="buttons">
         <el-button
@@ -79,7 +79,9 @@
           添加某贴到首页
         </el-button>
       </div>
-      <p class="total">总数：{{ total }}</p>
+      <p class="total">
+        总数：{{ total }}
+      </p>
     </div>
     <div v-if="list.length">
       <el-card

@@ -1,7 +1,7 @@
 <template>
   <div
-    v-loading="loading"
     id="manager-setting"
+    v-loading="loading"
   >
     <header
       v-if="isKing"
@@ -11,7 +11,7 @@
         type="primary"
         @click="createRole"
       >
-        <i class="el-icon-plus"/>
+        <i class="el-icon-plus" />
         创建权限
       </el-button>
     </header>
@@ -47,23 +47,31 @@
             type="success"
             size="mini"
             @click="setRole(scope.row)"
-          >授予授权</el-button>
+          >
+            授予授权
+          </el-button>
           <el-button
             type="primary"
             size="mini"
             @click="loadUsers(scope.row)"
-          >查看成员</el-button>
+          >
+            查看成员
+          </el-button>
           <el-button
             type="warning"
             size="mini"
             @click="updateRole(scope.row)"
-          >修改描述</el-button>
+          >
+            修改描述
+          </el-button>
           <el-button
             v-if="isKing"
             type="danger"
             size="mini"
             @click="deleteRole(scope.$index, scope.row.id)"
-          >删除权限</el-button>
+          >
+            删除权限
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -78,7 +86,7 @@
         :model="form"
       >
         <el-form-item label="名称">
-          <el-input v-model.trim="form.name"/>
+          <el-input v-model.trim="form.name" />
         </el-form-item>
         <el-form-item label="描述">
           <el-input
@@ -139,7 +147,9 @@
               type="danger"
               size="mini"
               @click="removeRole(scope.row)"
-            >移除权限</el-button>
+            >
+              移除权限
+            </el-button>
           </template>
         </el-table-column>
       </el-table>

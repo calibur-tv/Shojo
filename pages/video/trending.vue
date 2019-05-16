@@ -1,7 +1,7 @@
 <template>
   <div
-    v-loading="pageLoading"
     id="video-trending"
+    v-loading="pageLoading"
   >
     <el-table
       :data="pageData"
@@ -55,7 +55,7 @@ export default {
     this.getData(1)
   },
   methods: {
-    async getData(page) {
+    getData(page) {
       if (page <= this.pageState.max) {
         this.pageState.cur = page
         return

@@ -34,7 +34,9 @@
           type="primary"
           icon="el-icon-search"
           @click="search"
-        >搜索</el-button>
+        >
+          搜索
+        </el-button>
       </el-col>
     </el-row>
     <p
@@ -93,8 +95,8 @@ export default {
     }
   },
   methods: {
-    async search() {
-      let q = this.input
+    search() {
+      const q = this.input
       if (!q) {
         return
       }

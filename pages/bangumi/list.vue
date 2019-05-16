@@ -1,12 +1,12 @@
 <template>
   <div
-    v-loading="pageLoading"
     id="bangumi-list"
+    v-loading="pageLoading"
   >
     <header class="page-header">
       <el-row>
         <el-col :span="10">
-          <bangumi-search @search="handleBangumiSearch"/>
+          <bangumi-search @search="handleBangumiSearch" />
         </el-col>
       </el-row>
     </header>
@@ -31,7 +31,9 @@
               size="small"
               type="primary"
               icon="edit"
-            >编辑</el-button>
+            >
+              编辑
+            </el-button>
           </router-link>
           &nbsp;
           <el-button
@@ -39,7 +41,9 @@
             type="danger"
             size="small"
             icon="delete"
-          >已删除</el-button>
+          >
+            已删除
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -60,7 +64,7 @@ export default {
     this.getData(1)
   },
   methods: {
-    async getData(page) {
+    getData(page) {
       if (page <= this.pageState.max) {
         this.pageState.cur = page
         return

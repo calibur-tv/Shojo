@@ -57,26 +57,34 @@
               size="mini"
               type="primary"
               style="margin-right: 10px"
-            >查看用户</el-button>
+            >
+              查看用户
+            </el-button>
           </router-link>
           <template>
             <el-button
               type="danger"
               size="mini"
               @click="removeManager(scope.row.user.id, scope.$index)"
-            >移除权限</el-button>
+            >
+              移除权限
+            </el-button>
             <el-button
               v-if="scope.row.is_leader"
               type="warning"
               size="mini"
               @click="downgradeManager(scope.row.user)"
-            >降为小版主</el-button>
+            >
+              降为小版主
+            </el-button>
             <el-button
               v-else
               type="success"
               size="mini"
               @click="upgradeManager(scope.row.user)"
-            >升为大版主</el-button>
+            >
+              升为大版主
+            </el-button>
           </template>
         </template>
       </el-table-column>
@@ -105,7 +113,7 @@ export default {
       this.bangumiId = id
       this.searchManagers()
     },
-    async searchManagers() {
+    searchManagers() {
       this.$axios
         .$get('toggle/users', {
           params: {

@@ -1,7 +1,7 @@
 <template>
   <div id="dashboard">
-    <panel-group/>
-    <line-chart/>
+    <panel-group />
+    <line-chart />
   </div>
 </template>
 

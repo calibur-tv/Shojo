@@ -1,7 +1,7 @@
 <template>
   <div
-    v-loading="pageLoading"
     id="cartoon-list"
+    v-loading="pageLoading"
   >
     <el-table
       :data="pageData"
@@ -24,7 +24,9 @@
               size="small"
               type="primary"
               icon="edit"
-            >编辑漫画</el-button>
+            >
+              编辑漫画
+            </el-button>
           </router-link>
         </template>
       </el-table-column>
@@ -46,7 +48,7 @@ export default {
     this.getData()
   },
   methods: {
-    async getData() {
+    getData() {
       this.pageLoading = true
       this.$axios
         .$get('admin/cartoon/bangumis')

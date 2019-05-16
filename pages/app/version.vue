@@ -7,7 +7,7 @@
             type="primary"
             @click="showCreateModal = true"
           >
-            <i class="el-icon-plus"/>
+            <i class="el-icon-plus" />
             添加版本
           </el-button>
         </el-col>
@@ -33,9 +33,15 @@
           </el-form-item>
           <el-form-item label="版本类型">
             <el-radio-group v-model="versionType">
-              <el-radio :label="1">大版本</el-radio>
-              <el-radio :label="2">小版本</el-radio>
-              <el-radio :label="3">修复版</el-radio>
+              <el-radio :label="1">
+                大版本
+              </el-radio>
+              <el-radio :label="2">
+                小版本
+              </el-radio>
+              <el-radio :label="3">
+                修复版
+              </el-radio>
             </el-radio-group>
           </el-form-item>
           <el-form-item
@@ -63,7 +69,9 @@
                 <el-button
                   size="small"
                   type="primary"
-                >上传安装包</el-button>
+                >
+                  上传安装包
+                </el-button>
               </el-upload>
             </template>
             <el-col
@@ -71,7 +79,7 @@
               :span="18"
               placehloder="填写安装包的下载链接，或跳转链接"
             >
-              <el-input v-model="downloadUrl"/>
+              <el-input v-model="downloadUrl" />
             </el-col>
           </el-form-item>
           <el-form-item
@@ -126,12 +134,16 @@
             size="small"
             type="danger"
             @click="remove(scope.$index, scope.row)"
-          >删除</el-button>
+          >
+            删除
+          </el-button>
           <el-button
             size="small"
             type="primary"
             @click="toggleForce(scope.row)"
-          >{{ scope.row.force_update ? '取消强制更新' : '开启强制更新' }}</el-button>
+          >
+            {{ scope.row.force_update ? '取消强制更新' : '开启强制更新' }}
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -201,12 +213,12 @@ export default {
     this.getUploadAppUpToken()
   },
   methods: {
-    async getUploadAppUpToken() {
+    getUploadAppUpToken() {
       this.$axios.$get('admin/app/version/uptoken').then(data => {
         this.uploadHeaders.token = data
       })
     },
-    async getData() {
+    getData() {
       this.pageLoading = true
       this.$axios
         .$get('admin/app/version/list')
@@ -225,7 +237,7 @@ export default {
           this.pageLoading = false
         })
     },
-    async createAppVersion() {
+    createAppVersion() {
       if (this.canNot('控制APP版本')) {
         return
       }
@@ -246,7 +258,7 @@ export default {
           this.versionType = 0
         })
     },
-    async remove(index, row) {
+    remove(index, row) {
       if (this.canNot('控制APP版本')) {
         return
       }
@@ -271,7 +283,7 @@ export default {
         })
         .catch(() => {})
     },
-    async toggleForce(row) {
+    toggleForce(row) {
       if (this.canNot('控制APP版本')) {
         return
       }
@@ -318,6 +330,7 @@ export default {
       this.downloadUrl = `https://static.calibur.tv/${res.key}`
     },
     handleApkUploadError(err, file) {
+      console.log(err)
       this.$toast.error(`安装包：${file.name} 上传失败`)
     }
   }
