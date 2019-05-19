@@ -5,18 +5,18 @@
   >
     <transition-group name="breadcrumb">
       <el-breadcrumb-item
-        v-for="(item,index) in levelList"
+        v-for="(item, index) in levelList"
         v-if="item.meta.title"
         :key="item.path"
       >
-        <span
-          v-if="item.redirect==='noredirect'||index==levelList.length-1"
-          class="no-redirect"
-        >{{ mapTitle(item.meta.title) }}</span>
         <a
-          v-else
+          v-if="index === 0 && levelList.length > 1"
           @click.prevent="handleLink(item)"
         >{{ mapTitle(item.meta.title) }}</a>
+        <span
+          v-else
+          class="no-redirect"
+        >{{ mapTitle(item.meta.title) }}</span>
       </el-breadcrumb-item>
     </transition-group>
   </el-breadcrumb>

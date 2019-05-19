@@ -4,19 +4,26 @@
     v-loading="loading"
   >
     <header
-      v-if="isKing"
+      v-if="isKing || true"
       class="page-header"
     >
       <el-button
         type="primary"
-        @click="addAdmin"
+        @click="createRole"
       >
         <i class="el-icon-plus" />
-        添加管理员
+        创建角色
+      </el-button>
+      <el-button
+        type="primary"
+        @click="createPermission"
+      >
+        <i class="el-icon-plus" />
+        创建权限
       </el-button>
     </header>
     <el-table
-      :data="list"
+      :data="roles"
       border
       fit
       highlight-current-row
@@ -25,70 +32,49 @@
         label="id"
         prop="id"
       />
-      <el-table-column label="昵称">
-        <a
-          slot-scope="scope"
-          :href="$alias.user(scope.row.zone)"
-          target="_blank"
-          v-text="scope.row.nickname"
-        />
-      </el-table-column>
       <el-table-column
-        v-if="isKing"
-        label="操作"
-      >
+        label="角色"
+        prop="name"
+      />
+      <el-table-column label="权限">
         <template slot-scope="scope">
-          <el-button
-            type="primary"
-            size="mini"
-            @click="checkUserRole(scope.row)"
+          <el-tag
+            v-for="tag in scope.row.permissions"
+            :key="tag.id"
+            closable
+            :disable-transitions="false"
+            @close="deleteRolePermission(scope.row, tag)"
           >
-            查看权限
-          </el-button>
-          <el-button
-            type="danger"
-            size="mini"
-            @click="removeFromAdmin(scope.$index, scope.row.id)"
+            {{ tag.name }}
+          </el-tag>
+          <el-select
+            v-if="scope.row.inputVisible"
+            ref="saveTagInput"
+            v-model="inputValue"
+            filterable
+            size="small"
+            placeholder="请选择"
+            @change="toggleRolePermission"
+            @blur="handleInputBlur"
           >
-            删除权限
+            <el-option
+              v-for="item in filterPermission"
+              :key="item.id"
+              :label="item.name"
+              :value="item.id"
+            />
+          </el-select>
+          <el-button
+            v-else
+            class="button-new-tag"
+            size="small"
+            @click="showInput(scope.row)"
+          >
+            添加权限
           </el-button>
         </template>
       </el-table-column>
     </el-table>
-    <v-dialog
-      v-model="showFocusDialog"
-      :footer="false"
-      title="权限列表"
-    >
-      <el-table
-        :data="roles"
-        border
-        fit
-        highlight-current-row
-      >
-        <el-table-column
-          label="权限"
-        >
-          <template slot-scope="scope">
-            {{ scope.row }}
-          </template>
-        </el-table-column>
-        <el-table-column
-          label="操作"
-        >
-          <template slot-scope="scope">
-            <el-button
-              v-if="isKing"
-              type="danger"
-              size="mini"
-              @click="removeUserRole(scope.row)"
-            >
-              移除权限
-            </el-button>
-          </template>
-        </el-table-column>
-      </el-table>
-    </v-dialog>
   </div>
 </template>
 
@@ -96,16 +82,21 @@
 export default {
   data() {
     return {
-      list: [],
       loading: true,
-      showFocusDialog: false,
-      focusUser: {},
-      roles: []
+      roles: [],
+      permissions: [],
+      inputValue: '',
+      selectedRole: null
     }
   },
   computed: {
     isKing() {
       return this.$store.state.user.id === 1
+    },
+    filterPermission() {
+      return this.selectedRole
+        ? this.permissions.filter(_ => this.selectedRole.permissions.map(_ => _.id).indexOf(_.id) === -1)
+        : this.permissions
     }
   },
   created() {
@@ -114,68 +105,78 @@ export default {
   methods: {
     getData() {
       this.$axios
-        .$get('admin/console/list')
+        .$get('role/show_all_roles')
         .then(data => {
-          this.list = data
+          this.permissions = data.permissions
+          this.roles = data.roles.map(_ => {
+            return Object.assign(_, {
+              inputVisible: false
+            })
+          })
           this.loading = false
         })
         .catch(() => {
           this.loading = false
         })
     },
-    removeFromAdmin(index, id) {
-      if (this.id === 1) {
-        return
-      }
-      this.$axios.$post('admin/console/remove', { id }).then(() => {
-        this.list.splice(index, 1)
-      })
-    },
-    addAdmin() {
-      this.$prompt('请输入用户id', '提示', {
+    createRole() {
+      this.$prompt('请输入角色名', '提示', {
         confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        inputPattern: /^\d+$/,
-        inputErrorMessage: '非法的id'
+        cancelButtonText: '取消'
       })
         .then(({ value }) => {
-          if (value < 1) {
-            this.$toast.error('非法的id')
-            return
-          }
-          this.$axios.$post('admin/console/add', { id: value }).then(() => {
-            window.location.reload()
+          this.$axios.$post('role/create_role', { name: value }).then(role => {
+            role.permissions = []
+            this.roles.push(role)
           })
         })
         .catch(() => {})
     },
-    checkUserRole(user) {
-      this.focusUser = user
-      this.roles = []
-      this.showFocusDialog = true
-      this.$axios
-        .$get('admin/role/user_roles', {
-          params: {
-            user_id: user.id
-          }
-        })
-        .then(roles => {
-          this.roles = roles
-        })
-    },
-    removeUserRole(roleName) {
-      this.$axios
-        .$post('admin/role/delete_role', {
-          role_name: roleName,
-          user_id: this.focusUser.id
-        })
-        .then(() => {
-          this.roles.forEach((item, index) => {
-            if (item === roleName) {
-              this.roles.splice(index, 1)
-            }
+    createPermission() {
+      this.$prompt('请输入权限名', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消'
+      })
+        .then(({ value }) => {
+          this.$axios.$post('role/create_permission', { name: value }).then(permission => {
+            this.permissions.push(permission)
           })
         })
+        .catch(() => {})
+    },
+    deleteRolePermission(role, permission) {
+      this.selectedRole = role
+      this.toggleRolePermission(permission.id)
+    },
+    showInput(role) {
+      this.selectedRole = role
+      this.selectedRole.inputVisible = true
+      this.$nextTick(() => {
+        this.$refs.saveTagInput.focus()
+      })
+    },
+    toggleRolePermission(val) {
+      const index = this.selectedRole.permissions.map(_ => _.id).indexOf(val)
+      const isDelete = index > -1
+      this.$confirm('确定要执行该操作吗？', isDelete ? '删除权限' : '添加权限')
+        .then(() => {
+          this.handleInputBlur()
+          this.$axios.$post('role/toggle_permission_to_role', {
+            role_id: this.selectedRole.id,
+            permission_id: val,
+            is_delete: isDelete
+          })
+            .then(() => {
+              isDelete
+                ? this.selectedRole.permissions.splice(index, 1)
+                : this.selectedRole.permissions.push(this.permissions.filter(_ => _.id === val)[0])
+            })
+        })
+        .catch(() => {})
+    },
+    handleInputBlur() {
+      this.selectedRole.inputVisible = false
+      this.inputValue = ''
     }
   }
 }

@@ -2,6 +2,7 @@ import Cookies from 'js-cookie'
 import { Message } from 'element-ui'
 import permission from '~/assets/js/permission'
 
+/*
 export default ({ app, store, route, redirect }) => {
   const { user } = store.state
   const token = Cookies.get('JWT-TOKEN')
@@ -66,4 +67,8 @@ export default ({ app, store, route, redirect }) => {
       redirect(notRolePath)
     }
   }
+}
+*/
+export default () => {
+  // nothing
 }
