@@ -9,8 +9,8 @@ export default {
       return {
         dashboard: '首页',
         manager: '管理',
-        'manager-control': '权限列表',
-        'manager-setting': '设置权限'
+        'manager-control': '用户权限',
+        'manager-setting': '待定'
       }[title]
     },
     mapIcon(icon) {

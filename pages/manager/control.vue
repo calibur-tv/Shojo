@@ -27,14 +27,17 @@
       border
       fit
       highlight-current-row
+      @expand-change="showUsers"
     >
       <el-table-column
         label="id"
         prop="id"
+        width="80px"
       />
       <el-table-column
         label="角色"
         prop="name"
+        width="150px"
       />
       <el-table-column label="权限">
         <template slot-scope="scope">
@@ -74,6 +77,54 @@
           </el-button>
         </template>
       </el-table-column>
+      <el-table-column
+        label="用户"
+        type="expand"
+        width="80px"
+      >
+        <template slot-scope="props">
+          <el-table
+            v-loading="props.row.loading"
+            :data="props.row.users"
+            fit
+            highlight-current-row
+          >
+            <el-table-column
+              label="id"
+              prop="id"
+            />
+            <el-table-column
+              label="昵称"
+              prop="nickname"
+            />
+            <el-table-column label="操作">
+              <template slot-scope="scope">
+                <el-button
+                  type="danger"
+                  size="small"
+                  @click="deleteUserRole(scope.row)"
+                >
+                  删除角色
+                </el-button>
+              </template>
+            </el-table-column>
+          </el-table>
+        </template>
+      </el-table-column>
+      <el-table-column
+        label="操作"
+        width="200px"
+      >
+        <template slot-scope="scope">
+          <el-button
+            type="primary"
+            size="small"
+            @click="addUserRole(scope.row)"
+          >
+            添加用户
+          </el-button>
+        </template>
+      </el-table-column>
     </el-table>
   </div>
 </template>
@@ -110,7 +161,10 @@ export default {
           this.permissions = data.permissions
           this.roles = data.roles.map(_ => {
             return Object.assign(_, {
-              inputVisible: false
+              inputVisible: false,
+              loading: false,
+              fetched: false,
+              users: []
             })
           })
           this.loading = false
@@ -177,6 +231,57 @@ export default {
     handleInputBlur() {
       this.selectedRole.inputVisible = false
       this.inputValue = ''
+    },
+    showUsers(role) {
+      this.selectedRole = role
+      if (role.fetched) {
+        return
+      }
+      role.loading = true
+      this.$axios.$get('role/show_all_users', {
+        params: {
+          key: 'role',
+          value: role.name
+        }
+      })
+        .then(data => {
+          role.users = data
+          role.loading = false
+          role.fetched = true
+        })
+    },
+    addUserRole(role) {
+      this.$prompt('请输入用户slug', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消'
+      })
+        .then(({ value }) => {
+          this.$axios.$post('role/toggle_role_to_user', {
+            role_id: role.id,
+            user_id: value,
+            is_delete: false
+          }).then(user => {
+            role.users.push(user)
+          })
+        })
+        .catch(() => {})
+    },
+    deleteUserRole(user) {
+      this.$confirm('确定要执行该操作吗？', '删除权限')
+        .then(() => {
+          this.$axios.$post('role/toggle_role_to_user', {
+            role_id: this.selectedRole.id,
+            user_id: user.slug,
+            is_delete: true
+          }).then(user => {
+            this.selectedRole.users.forEach((item, index) => {
+              if (item.slug === user.slug) {
+                this.selectedRole.users.splice(index, 1)
+              }
+            })
+          })
+        })
+        .catch(() => {})
     }
   }
 }
