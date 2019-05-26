@@ -1,3 +1,18 @@
+<style lang="scss">
+#manager-control {
+  .el-tag {
+    margin-right: 10px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+
+  .role-list {
+    margin-bottom: 20px;
+    margin-top: -10px;
+  }
+}
+</style>
+
 <template>
   <div
     id="manager-control"
@@ -22,6 +37,14 @@
         创建权限
       </el-button>
     </header>
+    <div class="role-list">
+      <el-tag
+        v-for="item in permissions"
+        :key="item.id"
+      >
+        {{ item.name }}
+      </el-tag>
+    </div>
     <el-table
       :data="roles"
       border
@@ -92,6 +115,10 @@
             <el-table-column
               label="id"
               prop="id"
+            />
+            <el-table-column
+              label="slug"
+              prop="slug"
             />
             <el-table-column
               label="昵称"
