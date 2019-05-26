@@ -179,7 +179,7 @@ export default {
         cancelButtonText: '取消'
       })
         .then(({ value }) => {
-          this.$axios.$post('role/create_role', { name: value }).then(role => {
+          this.$axios.$post('console/role/create_role', { name: value }).then(role => {
             role.permissions = []
             this.roles.push(role)
           })
@@ -192,7 +192,7 @@ export default {
         cancelButtonText: '取消'
       })
         .then(({ value }) => {
-          this.$axios.$post('role/create_permission', { name: value }).then(permission => {
+          this.$axios.$post('console/role/create_permission', { name: value }).then(permission => {
             this.permissions.push(permission)
           })
         })
@@ -215,7 +215,7 @@ export default {
       this.$confirm('确定要执行该操作吗？', isDelete ? '删除权限' : '添加权限')
         .then(() => {
           this.handleInputBlur()
-          this.$axios.$post('role/toggle_permission_to_role', {
+          this.$axios.$post('console/role/toggle_permission_to_role', {
             role_id: this.selectedRole.id,
             permission_id: val,
             is_delete: isDelete
@@ -256,7 +256,7 @@ export default {
         cancelButtonText: '取消'
       })
         .then(({ value }) => {
-          this.$axios.$post('role/toggle_role_to_user', {
+          this.$axios.$post('console/role/toggle_role_to_user', {
             role_id: role.id,
             user_id: value,
             is_delete: false
@@ -269,7 +269,7 @@ export default {
     deleteUserRole(user) {
       this.$confirm('确定要执行该操作吗？', '删除权限')
         .then(() => {
-          this.$axios.$post('role/toggle_role_to_user', {
+          this.$axios.$post('console/role/toggle_role_to_user', {
             role_id: this.selectedRole.id,
             user_id: user.slug,
             is_delete: true
