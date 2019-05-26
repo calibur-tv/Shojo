@@ -2,15 +2,18 @@ import Vue from 'vue'
 
 export const state = () => ({
   user: {},
+  login: false,
   todo: []
 })
 
 export const mutations = {
   SET_USER(state, user) {
     state.user = user
+    state.login = !!user
   },
   USER_LOGOUT(state) {
     state.user = {}
+    state.login = false
   },
   UPDATE_USER_INFO(state, { key, value }) {
     Vue.set(state.user, key, value)

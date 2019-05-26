@@ -156,7 +156,7 @@ export default {
   methods: {
     getData() {
       this.$axios
-        .$get('role/show_all_roles')
+        .$get('console/role/show_all_roles')
         .then(data => {
           this.permissions = data.permissions
           this.roles = data.roles.map(_ => {
@@ -238,7 +238,7 @@ export default {
         return
       }
       role.loading = true
-      this.$axios.$get('role/show_all_users', {
+      this.$axios.$get('console/role/show_all_users', {
         params: {
           key: 'role',
           value: role.name

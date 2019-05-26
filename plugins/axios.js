@@ -30,7 +30,7 @@ export default ({ $axios, redirect, app }) => {
   $axios.onResponse(resp => {
     if (
       resp.config.method === 'post' &&
-      !/\/door\/refresh/.test(resp.config.url)
+      !/\/door\/get_user_info/.test(resp.config.url)
     ) {
       if (!window.__dont_show_api_message__) {
         Message.success('操作成功')

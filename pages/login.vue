@@ -117,7 +117,7 @@ export default {
             ctx: this,
             success: ({ data }) => {
               this.$axios
-                .$post('door/login', {
+                .$post('door/login?role=visit_console', {
                   geetest: data,
                   remember: true,
                   access: this.loginForm.username,

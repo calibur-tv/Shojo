@@ -5,8 +5,8 @@ const LodashWebpackPlugin = require('lodash-webpack-plugin')
 const qiniu = require('./deploy/qiniu')
 const resolve = dir => path.join(__dirname, '', dir)
 const apiMap = {
-  development: 'http://localhost:5200/v1/console/',
-  production: 'https://api.calibur.tv/v1/console/'
+  development: 'http://localhost:5200/v1/',
+  production: 'https://api.calibur.tv/v1/'
 }
 
 module.exports = {
