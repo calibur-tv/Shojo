@@ -1,19 +1,20 @@
 import { Message } from 'element-ui'
 
 const generateRequestError = err => {
+  const result = {}
   if (/timeout of/.test(err.message)) {
-    err.statusCode = 504
-    err.message = '网路请求超时，请稍候再试！'
-    return err
+    result.statusCode = 504
+    result.message = '网络请求超时，请稍候再试！'
+    return result
   }
   if (!err.response) {
-    err.statusCode = 502
-    err.message = '网络错误，请刷新网页重试！'
-    return err
+    result.statusCode = 502
+    result.message = '网络错误，请刷新网页重试！'
+    return result
   }
-  err.statusCode = err.response.status
-  err.message = err.response.data.message
-  return err
+  result.statusCode = err.response.status
+  result.message = err.response.data.message || '发生错误了，请稍后再试！'
+  return result
 }
 
 export default ({ $axios, redirect, app }) => {

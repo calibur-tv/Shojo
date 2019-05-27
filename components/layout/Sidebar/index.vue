@@ -7,7 +7,7 @@
 <template>
   <el-scrollbar wrap-class="scrollbar-wrapper">
     <el-menu
-      v-if="user || true"
+      v-if="user"
       :show-timeout="200"
       :default-active="computedActiveRoute"
       :collapse="isCollapse"

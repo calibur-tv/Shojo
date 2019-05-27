@@ -18,10 +18,7 @@
     id="manager-control"
     v-loading="loading"
   >
-    <header
-      v-if="isKing || true"
-      class="page-header"
-    >
+    <header class="page-header">
       <el-button
         type="primary"
         @click="createRole"
@@ -168,9 +165,6 @@ export default {
     }
   },
   computed: {
-    isKing() {
-      return this.$store.state.user.id === 1
-    },
     filterPermission() {
       return this.selectedRole
         ? this.permissions.filter(_ => this.selectedRole.permissions.map(_ => _.id).indexOf(_.id) === -1)

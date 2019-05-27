@@ -1,7 +1,7 @@
 export default {
   computed: {
     mapHidden() {
-      return ['bangumi-edit']
+      return []
     }
   },
   methods: {
@@ -10,7 +10,7 @@ export default {
         dashboard: '首页',
         manager: '管理',
         'manager-control': '用户权限',
-        'manager-setting': '待定'
+        'manager-setting': '敏感词库'
       }[title]
     },
     mapIcon(icon) {
@@ -24,35 +24,6 @@ export default {
     },
     mapVisit(title, store = null) {
       return true
-      if (title === 'dashboard') {
-        return true
-      }
-      const list = {
-        'bangumi-manager': '访问设置版主',
-        'user-faker': '访问运营账号'
-      }
-      const must = {
-        manager: '幕后主使者',
-        'manager-control': '幕后主使者',
-        'manager-setting': '幕后主使者'
-      }
-      if (!list[title] && !must[title]) {
-        return true
-      }
-      const roles = store
-        ? store.state.user.roles
-        : this.$store.state.user.roles
-      if (must[title]) {
-        return roles.some(_ => _ === must[title])
-      }
-      if (
-        roles.some(
-          _ => ~['幕后主使者', '继承繁星之人', '被神所眷恋之人'].indexOf(_)
-        )
-      ) {
-        return true
-      }
-      return roles.some(_ => _ === list[title])
     }
   }
 }
