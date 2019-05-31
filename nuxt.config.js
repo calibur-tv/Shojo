@@ -3,16 +3,13 @@ const isDev = process.env.NODE_ENV === 'development'
 const path = require('path')
 const LodashWebpackPlugin = require('lodash-webpack-plugin')
 const qiniu = require('./deploy/qiniu')
+const ENV = require('./.env.js')
 const resolve = dir => path.join(__dirname, '', dir)
-const apiMap = {
-  development: 'http://localhost:5200/v1/',
-  production: 'https://api.calibur.tv/v1/'
-}
 
 module.exports = {
   mode: 'spa',
   env: {
-    API_URL: apiMap[process.env.NODE_ENV]
+    API_URL: ENV.API_HOST[process.env.NODE_ENV]
   },
   /*
   ** Headers of the page

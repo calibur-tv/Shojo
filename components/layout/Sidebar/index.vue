@@ -7,7 +7,7 @@
 <template>
   <el-scrollbar wrap-class="scrollbar-wrapper">
     <el-menu
-      v-if="user"
+      v-if="login"
       :show-timeout="200"
       :default-active="computedActiveRoute"
       :collapse="isCollapse"
@@ -70,8 +70,8 @@ export default {
       }
       return this.$route.path
     },
-    user() {
-      return this.$store.state.user.id
+    login() {
+      return this.$store.state.login
     }
   }
 }
