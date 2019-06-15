@@ -1,11 +1,11 @@
 <style lang="scss">
 #manager-setting {
-  .el-tag + .el-tag {
-    margin-left: 10px;
+  .el-tag {
+    margin-right: 10px;
+    margin-bottom: 10px;
   }
 
   .button-new-tag {
-    margin-left: 10px;
     height: 32px;
     line-height: 30px;
     padding-top: 0;
@@ -14,8 +14,7 @@
 
   .input-new-tag {
     width: 90px;
-    margin-left: 10px;
-    vertical-align: bottom;
+    vertical-align: top;
   }
 }
 </style>
@@ -23,7 +22,7 @@
 <template>
   <div
     id="manager-setting"
-    v-loading="loading"
+    v-loading="pageLoading"
   >
     <header class="page-header">
       <el-select
@@ -40,7 +39,7 @@
     </header>
     <div>
       <el-tag
-        v-for="(tag, index) in list"
+        v-for="(tag, index) in pageData"
         :key="index"
         closable
         :disable-transitions="false"
@@ -61,14 +60,18 @@
         + 添加词汇
       </el-button>
     </div>
+    <v-page
+      :state="pageState"
+      :change="getData"
+    />
   </div>
 </template>
 
 <script>
+import pageMixin from '~/mixins/page'
+
 export default {
-  name: '',
-  components: {},
-  props: {},
+  mixins: [pageMixin],
   data() {
     return {
       level: this.$route.query.level ? this.$route.query.level : 'level_1',
@@ -76,8 +79,6 @@ export default {
         'level_1',
         'level_2'
       ],
-      loading: true,
-      list: [],
       inputVisible: false,
       inputValue: ''
     }
@@ -87,25 +88,42 @@ export default {
       return `words_${this.level}`
     }
   },
-  watch: {},
   created() {
-    this.getData()
+    this.getData(1)
   },
-  mounted() {},
   methods: {
-    getData() {
+    getData(page) {
+      if (page <= this.pageState.max) {
+        this.pageState.cur = page
+        return
+      }
+      if (page - this.pageState.max > 3) {
+        this.$toast.error('一次获取的数据太多')
+        return
+      }
+      if (this.pageLoading) {
+        return
+      }
+      this.pageLoading = true
+      this.pageState.size = 100
       this.$axios
         .$get('console/trial/words/show', {
           params: {
-            filename: this.filename
+            filename: this.filename,
+            to_page: page,
+            cur_page: this.pageState.cur,
+            take: 100
           }
         })
         .then(data => {
-          this.list = data
-          this.loading = false
+          this.pageState.total = data.total
+          this.pageState.cur = page
+          this.pageState.max = page
+          this.pageList = this.pageList.concat(data.result)
+          this.pageLoading = false
         })
         .catch(() => {
-          this.loading = false
+          this.pageLoading = false
         })
     },
     handleClose(word, index) {
@@ -123,7 +141,7 @@ export default {
     },
     showInput() {
       this.inputVisible = true
-      this.$nextTick(_ => {
+      this.$nextTick(() => {
         this.$refs.saveTagInput.$refs.input.focus()
       })
     },
