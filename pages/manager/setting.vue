@@ -134,7 +134,7 @@ export default {
             words: [word]
           })
             .then(() => {
-              this.list.splice(index, 1)
+              this.pageDelete(index)
             })
         })
         .catch(() => {})
@@ -155,7 +155,7 @@ export default {
         words: [val].filter(_ => _)
       })
         .then(() => {
-          this.list.push(val)
+          this.pageAppend(val)
           this.inputValue = ''
           this.inputVisible = false
         })

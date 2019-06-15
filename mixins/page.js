@@ -31,6 +31,12 @@ export default {
         size: 10,
         total: 0
       }
+    },
+    pageAppend(value) {
+      this.pageList.splice((this.pageState.cur - 1) * this.pageState.size, 0, value)
+    },
+    pageDelete(index) {
+      this.pageList.splice((this.pageState.cur - 1) * this.pageState.size + index, 1)
     }
   }
 }
