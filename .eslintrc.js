@@ -23,7 +23,10 @@ module.exports = {
     'no-empty': 'off',
     'camelcase': 'off',
     'vue/no-unused-components': 'warn',
-    'arrow-parens': [1, 'as-needed']
+    'arrow-parens': [1, 'as-needed'],
+    'import/order': 'off',
+    'vue/no-v-html': 'off',
+    'space-before-function-paren': [1, 'never']
   },
   globals: {
     _: true

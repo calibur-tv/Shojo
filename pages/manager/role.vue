@@ -1,5 +1,5 @@
 <style lang="scss">
-#manager-control {
+#manager-role {
   .el-tag {
     margin-right: 10px;
     margin-bottom: 5px;
@@ -15,7 +15,7 @@
 
 <template>
   <div
-    id="manager-control"
+    id="manager-role"
     v-loading="loading"
   >
     <header class="page-header">
@@ -167,7 +167,7 @@ export default {
   computed: {
     filterPermission() {
       return this.selectedRole
-        ? this.permissions.filter(_ => this.selectedRole.permissions.map(_ => _.id).indexOf(_.id) === -1)
+        ? this.permissions.filter(_ => !this.selectedRole.permissions.map(_ => _.id).includes(_.id))
         : this.permissions
     }
   },

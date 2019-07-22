@@ -107,8 +107,8 @@ export default {
       }
       this.filteredOptions = this.bangumis.filter(option => {
         return option.alias
-          ? option.alias.indexOf(query) > -1 || option.name.indexOf(query) > -1
-          : option.name.indexOf(query) > -1
+          ? option.alias.includes(query) || option.name.includes(query)
+          : option.name.includes(query)
       })
     },
     getData() {

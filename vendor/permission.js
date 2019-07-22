@@ -28,7 +28,7 @@ router.beforeEach((to, from, next) => {
     } else {
       next()
     }
-  } else if (whiteList.indexOf(to.path) !== -1) {
+  } else if (whiteList.includes(to.path)) {
     next()
   } else {
     next(`/login?redirect=${to.path}`) // 否则全部重定向到登录页

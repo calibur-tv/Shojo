@@ -1,5 +1,5 @@
 <style lang="scss">
-#manager-setting {
+#manager-risk {
   .el-tag {
     margin-right: 10px;
     margin-bottom: 10px;
@@ -21,7 +21,7 @@
 
 <template>
   <div
-    id="manager-setting"
+    id="manager-risk"
     v-loading="pageLoading"
   >
     <header class="page-header">

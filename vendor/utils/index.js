@@ -11,7 +11,7 @@ export function parseTime(time, cFormat) {
   if (typeof time === 'object') {
     date = time
   } else {
-    if (('' + time).length === 10) time = parseInt(time) * 1000
+    if (('' + time).length === 10) { time = parseInt(time) * 1000 }
     date = new Date(time)
   }
   const formatObj = {

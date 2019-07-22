@@ -9,8 +9,9 @@ export default {
       return {
         dashboard: '首页',
         manager: '管理',
-        'manager-control': '用户权限',
-        'manager-setting': '敏感词库'
+        'manager-role': '用户权限',
+        'manager-risk': '敏感词库',
+        'manager-test': '敏感检测'
       }[title]
     },
     mapIcon(icon) {
@@ -18,8 +19,9 @@ export default {
       return {
         dashboard: 'tachometer-alt',
         manager: 'cog',
-        'manager-control': 'scroll',
-        'manager-setting': 'dice-d20'
+        'manager-role': 'scroll',
+        'manager-risk': 'dice-d20',
+        'manager-test': 'temperature-low'
       }[icon]
     },
     mapVisit(title, store = null) {

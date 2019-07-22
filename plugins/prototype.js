@@ -30,7 +30,7 @@ export default ({ $axios }) => {
           return url
         }
 
-        const link = /^http/.test(url) ? url : `https://image.calibur.tv/${url}`
+        const link = url.startsWith('http') ? url : `https://image.calibur.tv/${url}`
         const canUseWebP = () => {
           if (Vue.prototype.$isServer) {
             return false
