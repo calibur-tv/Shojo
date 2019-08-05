@@ -3,7 +3,7 @@
   "bucket"             :   "console-static",
   "overwrite"          :   true,
   "rescan_local"       :   true,
-  "skip_suffixes"      :   ".DS_Store",
+  "skip_suffixes"      :   ".DS_Store,.nojekyll",
   "key_prefix"         :   "",
   "log_file"           :   "./upload.log",
   "log_level"          :   "info",

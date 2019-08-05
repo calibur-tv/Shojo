@@ -202,7 +202,12 @@ export default {
         .then(({ value }) => {
           this.$axios.$post('console/role/create_role', { name: value }).then(role => {
             role.permissions = []
-            this.roles.push(role)
+            this.roles.push(Object.assign(role, {
+              inputVisible: false,
+              loading: false,
+              fetched: false,
+              users: []
+            }))
           })
         })
         .catch(() => {})
