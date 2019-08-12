@@ -23,7 +23,7 @@
     "echarts": "^4.2.1",
     "element-ui": "^2.11.1",
     "geetest-captcha": "^1.1.1",
-    "js-cookie": "^2.2.0",
+    "js-cookie": "^2.2.1",
     "koa": "^2.7.0",
     "lodash": "^4.17.15",
     "normalize.css": "^8.0.1",
@@ -35,7 +35,7 @@
     "vue-moment": "^4.0.0"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config": "^1.0.1",
+    "@nuxtjs/eslint-config": "^1.1.2",
     "@nuxtjs/style-resources": "^0.1.1",
     "babel-eslint": "^10.0.2",
     "babel-plugin-lodash": "^3.3.4",
@@ -43,7 +43,7 @@
     "eslint-config-standard": ">=13.0.1",
     "eslint-loader": "^2.2.1",
     "eslint-plugin-import": ">=2.18.2",
-    "eslint-plugin-jest": ">=22.14.1",
+    "eslint-plugin-jest": ">=22.15.0",
     "eslint-plugin-node": ">=9.1.0",
     "eslint-plugin-nuxt": ">=0.4.2",
     "eslint-plugin-promise": ">=4.2.1",
@@ -52,6 +52,6 @@
     "lodash-webpack-plugin": "^0.11.5",
     "node-sass": "^4.10.0",
     "nodemon": "^1.19.1",
-    "sass-loader": "^7.1.0"
+    "sass-loader": "^7.2.0"
   }
 }

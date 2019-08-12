@@ -255,8 +255,10 @@ export default {
         .catch(() => {})
     },
     handleInputBlur() {
-      this.selectedRole.inputVisible = false
-      this.inputValue = ''
+      this.$nextTick(() => {
+        this.selectedRole.inputVisible = false
+        this.inputValue = ''
+      })
     },
     showUsers(role) {
       this.selectedRole = role
