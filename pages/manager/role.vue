@@ -259,7 +259,7 @@ export default {
         setTimeout(() => {
           this.selectedRole.inputVisible = false
           this.inputValue = ''
-        }, 20)
+        }, 1000)
       })
     },
     showUsers(role) {
