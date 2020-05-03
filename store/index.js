@@ -20,7 +20,7 @@ export const mutations = {
   },
   SET_TODO(state, data) {
     const result = []
-    Object.keys(data).forEach(key => {
+    Object.keys(data).forEach((key) => {
       result.push({
         name: key,
         value: data[key]
@@ -29,7 +29,7 @@ export const mutations = {
     state.todo = result
   },
   CHANGE_TODO(state, { key, value = 1 }) {
-    state.todo.forEach(item => {
+    state.todo.forEach((item) => {
       if (item.name === key) {
         item.value -= value
       }

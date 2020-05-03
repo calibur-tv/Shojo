@@ -79,8 +79,8 @@ export default {
         .$get('admin/stats/timeline', {
           params: { days: 30 }
         })
-        .then(data => {
-          this.resource = data.map(_ => {
+        .then((data) => {
+          this.resource = data.map((_) => {
             const day = parseInt(_.day, 10) * 1000
             return {
               id: parseInt(_.id, 10),

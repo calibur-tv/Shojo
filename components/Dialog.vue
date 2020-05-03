@@ -261,11 +261,11 @@ export default {
     }
   },
   mounted() {
-    this.$watch('value', val => {
+    this.$watch('value', (val) => {
       this.dialogVisible = val
       window.__closeImageLazy__ = val
     })
-    this.$watch('dialogVisible', val => {
+    this.$watch('dialogVisible', (val) => {
       this.$emit('input', val)
       window.__closeImageLazy__ = val
     })

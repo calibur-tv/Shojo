@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     getBreadcrumb() {
-      let matched = this.$route.matched.filter(item => {
+      let matched = this.$route.matched.filter((item) => {
         if (item.name) {
           return true
         }

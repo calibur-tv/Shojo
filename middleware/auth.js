@@ -21,7 +21,7 @@ export default ({ app, store, route, redirect }) => {
     app.$axios.setToken(token, 'Bearer')
     app.$axios
       .$post('door/get_user_info?role=visit_console')
-      .then(data => {
+      .then((data) => {
         // 登录成功
         if (isLoginPage) {
           window.location = indexPath
@@ -34,7 +34,7 @@ export default ({ app, store, route, redirect }) => {
         }
         store.dispatch('getTodo')
       })
-      .catch(err => {
+      .catch((err) => {
         // 登录失败
         Message.error(err.message)
         Cookies.remove('JWT-TOKEN')

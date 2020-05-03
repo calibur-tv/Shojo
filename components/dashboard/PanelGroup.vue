@@ -324,7 +324,7 @@ export default {
   },
   methods: {
     getData() {
-      this.$axios.$get('admin/stats/realtime').then(data => {
+      this.$axios.$get('admin/stats/realtime').then((data) => {
         this.stats = data
       })
     }

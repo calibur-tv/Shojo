@@ -91,10 +91,10 @@ export default {
   },
   created() {
     this.getData()
-    this.$watch('value', val => {
+    this.$watch('value', (val) => {
       this.searchId = val
     })
-    this.$watch('searchId', val => {
+    this.$watch('searchId', (val) => {
       this.$emit('input', val)
       val && this.$emit('search', val)
     })
@@ -105,7 +105,7 @@ export default {
         this.filteredOptions = this.bangumis
         return
       }
-      this.filteredOptions = this.bangumis.filter(option => {
+      this.filteredOptions = this.bangumis.filter((option) => {
         return option.alias
           ? option.alias.includes(query) || option.name.includes(query)
           : option.name.includes(query)
@@ -118,12 +118,12 @@ export default {
       this.loading = true
       this.$axios
         .$get('search/bangumis')
-        .then(data => {
+        .then((data) => {
           this.bangumis = data
           this.filteredOptions = data
           this.loading = false
         })
-        .catch(e => {
+        .catch((e) => {
           this.$toast.error(e.message)
           this.loading = false
         })

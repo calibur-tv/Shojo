@@ -114,7 +114,7 @@ export default {
     getData() {
       this.$axios
         .$get('console/trial/words/blocked')
-        .then(data => {
+        .then((data) => {
           this.words = data
           this.pageLoading = false
         })
@@ -152,7 +152,7 @@ export default {
       this.$axios.$post('console/trial/words/test', {
         text: this.textarea
       })
-        .then(result => {
+        .then((result) => {
           this.wordsResult = result
         })
     },
@@ -163,7 +163,7 @@ export default {
       this.$axios.$post('console/trial/image/test', {
         url: this.url
       })
-        .then(result => {
+        .then((result) => {
           this.imageResult = result
         })
     }

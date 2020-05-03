@@ -1,7 +1,7 @@
 import { Message } from 'element-ui'
 
 const timeout = (duration = 3000) =>
-  new Promise(resolve => {
+  new Promise((resolve) => {
     setTimeout(resolve, duration)
   })
 

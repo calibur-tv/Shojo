@@ -9,7 +9,7 @@ const app = {
     device: 'desktop'
   },
   mutations: {
-    TOGGLE_SIDEBAR: state => {
+    TOGGLE_SIDEBAR: (state) => {
       if (state.sidebar.opened) {
         Cookies.set('sidebarStatus', 1)
       } else {

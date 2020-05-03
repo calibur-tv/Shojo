@@ -30,13 +30,13 @@ const user = {
       const username = userInfo.username.trim()
       return new Promise((resolve, reject) => {
         login(username, userInfo.password)
-          .then(response => {
+          .then((response) => {
             const data = response.data
             setToken(data.token)
             commit('SET_TOKEN', data.token)
             resolve()
           })
-          .catch(error => {
+          .catch((error) => {
             reject(error)
           })
       })
@@ -46,7 +46,7 @@ const user = {
     GetInfo({ commit, state }) {
       return new Promise((resolve, reject) => {
         getInfo(state.token)
-          .then(response => {
+          .then((response) => {
             const data = response.data
             if (data.roles && data.roles.length > 0) {
               // 验证返回的roles是否是一个非空数组
@@ -58,7 +58,7 @@ const user = {
             commit('SET_AVATAR', data.avatar)
             resolve(response)
           })
-          .catch(error => {
+          .catch((error) => {
             reject(error)
           })
       })
@@ -74,7 +74,7 @@ const user = {
             removeToken()
             resolve()
           })
-          .catch(error => {
+          .catch((error) => {
             reject(error)
           })
       })
@@ -82,7 +82,7 @@ const user = {
 
     // 前端 登出
     FedLogOut({ commit }) {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         commit('SET_TOKEN', '')
         removeToken()
         resolve()

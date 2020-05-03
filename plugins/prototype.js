@@ -1,8 +1,8 @@
 import Vue from 'vue'
-import Toast from '~/assets/js/toast'
 import Cookies from 'js-cookie'
-import Alias from '~/assets/js/alias'
 import Captcha from 'geetest-captcha'
+import Toast from '~/assets/js/toast'
+import Alias from '~/assets/js/alias'
 
 export default ({ $axios }) => {
   Vue.use({

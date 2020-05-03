@@ -8,7 +8,7 @@ export default {
       return str
     }
     let query = '?'
-    Object.keys(obj).forEach(item => {
+    Object.keys(obj).forEach((item) => {
       query += `${item}=${obj[item]}&`
     })
     return `${str.split('?').shift()}${query.substring(0, query.length - 1)}`

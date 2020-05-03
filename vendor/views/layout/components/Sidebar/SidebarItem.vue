@@ -62,9 +62,9 @@
 
 <script>
 import path from 'path'
-import { isExternal } from '~/vendor/utils'
 import Item from './Item'
 import AppLink from './Link'
+import { isExternal } from '~/vendor/utils'
 
 export default {
   name: 'SidebarItem',
@@ -91,7 +91,7 @@ export default {
   },
   methods: {
     hasOneShowingChild(children, parent) {
-      const showingChildren = children.filter(item => {
+      const showingChildren = children.filter((item) => {
         if (item.hidden) {
           return false
         }

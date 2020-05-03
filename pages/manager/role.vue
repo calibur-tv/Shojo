@@ -178,9 +178,9 @@ export default {
     getData() {
       this.$axios
         .$get('console/role/show_all_roles')
-        .then(data => {
+        .then((data) => {
           this.permissions = data.permissions
-          this.roles = data.roles.map(_ => {
+          this.roles = data.roles.map((_) => {
             return Object.assign(_, {
               inputVisible: false,
               loading: false,
@@ -200,7 +200,7 @@ export default {
         cancelButtonText: '取消'
       })
         .then(({ value }) => {
-          this.$axios.$post('console/role/create_role', { name: value }).then(role => {
+          this.$axios.$post('console/role/create_role', { name: value }).then((role) => {
             role.permissions = []
             this.roles.push(Object.assign(role, {
               inputVisible: false,
@@ -218,7 +218,7 @@ export default {
         cancelButtonText: '取消'
       })
         .then(({ value }) => {
-          this.$axios.$post('console/role/create_permission', { name: value }).then(permission => {
+          this.$axios.$post('console/role/create_permission', { name: value }).then((permission) => {
             this.permissions.push(permission)
           })
         })
@@ -274,7 +274,7 @@ export default {
           value: role.name
         }
       })
-        .then(data => {
+        .then((data) => {
           role.users = data
           role.loading = false
           role.fetched = true
@@ -290,7 +290,7 @@ export default {
             role_id: role.id,
             user_id: value,
             is_delete: false
-          }).then(user => {
+          }).then((user) => {
             role.users.push(user)
           })
         })
@@ -303,7 +303,7 @@ export default {
             role_id: this.selectedRole.id,
             user_id: user.slug,
             is_delete: true
-          }).then(user => {
+          }).then((user) => {
             this.selectedRole.users.forEach((item, index) => {
               if (item.slug === user.slug) {
                 this.selectedRole.users.splice(index, 1)

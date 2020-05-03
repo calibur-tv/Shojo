@@ -1,6 +1,6 @@
 import { Message } from 'element-ui'
 
-const generateRequestError = err => {
+const generateRequestError = (err) => {
   const result = {}
   if (/timeout of/.test(err.message)) {
     result.statusCode = 504
@@ -23,28 +23,24 @@ export default ({ $axios, redirect, app }) => {
     $axios.setToken(app.store.state.user.token, 'Bearer')
   }
 
-  $axios.onRequest(config => {
+  $axios.onRequest((config) => {
     config.baseURL = process.env.API_URL
     return config
   })
 
-  $axios.onResponse(resp => {
+  $axios.onResponse((resp) => {
     if (
       resp.config.method === 'post' &&
-      !/\/door\/get_user_info/.test(resp.config.url)
+      !/door\/get_user_info/.test(resp.config.url)
     ) {
-      if (!window.__dont_show_api_message__) {
-        Message.success('操作成功')
-      }
+      Message.success('操作成功')
     }
     return resp.data
   })
 
-  $axios.onError(error => {
+  $axios.onError((error) => {
     const err = generateRequestError(error)
-    if (!window.__dont_show_api_message__) {
-      Message.error(err.message)
-    }
+    Message.error(err.message)
     if (err.statusCode === 401) {
       app.store.commit('USER_LOGOUT')
       redirect('/login')

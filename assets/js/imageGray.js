@@ -5,7 +5,7 @@ export default function(ele, hgt = 0) {
 
   let [data, width, height, length, i = -4, count = 0] = []
 
-  const getRGB = reallyImage => {
+  const getRGB = (reallyImage) => {
     const canvas = document.createElement('canvas')
     const context = canvas.getContext && canvas.getContext('2d')
     const rgb = { r: 0, g: 0, b: 0 }
@@ -46,7 +46,7 @@ export default function(ele, hgt = 0) {
     return rgb
   }
 
-  const getGray = rgb => {
+  const getGray = (rgb) => {
     return rgb.r * 0.299 + rgb.g * 0.587 + rgb.b * 0.114
   }
 

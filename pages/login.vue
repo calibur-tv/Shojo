@@ -110,7 +110,7 @@ export default {
       }
     },
     handleLogin() {
-      this.$refs.loginForm.validate(valid => {
+      this.$refs.loginForm.validate((valid) => {
         if (valid) {
           this.loading = true
           this.$captcha({
@@ -123,7 +123,7 @@ export default {
                   access: this.loginForm.username,
                   secret: this.loginForm.password
                 })
-                .then(token => {
+                .then((token) => {
                   this.$cookie.set('JWT-TOKEN', token, {
                     expires: 1
                   })

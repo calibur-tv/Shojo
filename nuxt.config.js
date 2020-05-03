@@ -1,7 +1,7 @@
 /* eslint-disable nuxt/no-cjs-in-config */
+const path = require('path')
 const webpack = require('webpack')
 const isDev = process.env.NODE_ENV === 'development'
-const path = require('path')
 const LodashWebpackPlugin = require('lodash-webpack-plugin')
 const qiniu = require('./deploy/qiniu')
 const ENV = require('./.env.js')

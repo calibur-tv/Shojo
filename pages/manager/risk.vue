@@ -115,7 +115,7 @@ export default {
             take: 100
           }
         })
-        .then(data => {
+        .then((data) => {
           this.pageState.total = data.total
           this.pageState.cur = page
           this.pageState.max = page

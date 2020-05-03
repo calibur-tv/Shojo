@@ -116,7 +116,7 @@ export default {
             value: q
           }
         })
-        .then(data => {
+        .then((data) => {
           this.user = data
           this.$emit('input', parseInt(data.id, 10))
           this.loading = false

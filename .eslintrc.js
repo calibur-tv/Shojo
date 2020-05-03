@@ -11,22 +11,11 @@ module.exports = {
     '@nuxtjs',
     'plugin:nuxt/recommended'
   ],
-  // add your custom rules here
   rules: {
-    'no-console': 'warn',
-    'no-debugger': 'warn',
-    'no-undef': 'error',
-    'no-else-return': 'warn',
-    'no-unused-vars': 'warn',
-    'no-unreachable': 'warn',
-    'no-control-regex': 'warn',
-    'no-empty': 'off',
-    'camelcase': 'off',
-    'vue/no-unused-components': 'warn',
-    'arrow-parens': [1, 'as-needed'],
-    'import/order': 'off',
     'vue/no-v-html': 'off',
-    'space-before-function-paren': [1, 'never']
+    'nuxt/no-cjs-in-config': 'off',
+    'camelcase': 'off',
+    'space-before-function-paren': ['warn', 'never']
   },
   globals: {
     _: true
