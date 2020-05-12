@@ -14,7 +14,7 @@ module.exports = {
   rules: {
     'vue/no-v-html': 'off',
     'nuxt/no-cjs-in-config': 'off',
-    'camelcase': 'off',
+    camelcase: 'off',
     'space-before-function-paren': ['warn', 'never']
   },
   globals: {

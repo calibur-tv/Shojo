@@ -12,8 +12,9 @@ export default {
         'manager-role': '用户权限',
         'manager-risk': '敏感词库',
         'manager-test': '敏感检测',
-        spider: '运营',
-        'spider-user': '用户管理'
+        spider: '站源',
+        'spider-user': '用户管理',
+        'spider-channel': '渠道管理'
       }[title]
     },
     mapIcon(icon) {
@@ -25,7 +26,8 @@ export default {
         'manager-risk': 'dice-d20',
         'manager-test': 'temperature-low',
         spider: 'user-md',
-        'spider-user': 'user-plus'
+        'spider-user': 'user-plus',
+        'spider-channel': 'biohazard'
       }[icon]
     },
     mapVisit(title, store = null) {
