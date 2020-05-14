@@ -12,9 +12,10 @@ export default {
         'manager-role': '用户权限',
         'manager-risk': '敏感词库',
         'manager-test': '敏感检测',
-        spider: '站源',
-        'spider-user': '用户管理',
-        'spider-channel': '渠道管理'
+        spider: '运营',
+        'spider-user': '渠道用户',
+        'spider-channel': '渠道状态',
+        'spider-banner': '首页轮播'
       }[title]
     },
     mapIcon(icon) {
@@ -27,7 +28,8 @@ export default {
         'manager-test': 'temperature-low',
         spider: 'user-md',
         'spider-user': 'user-plus',
-        'spider-channel': 'biohazard'
+        'spider-channel': 'biohazard',
+        'spider-banner': 'photo-video'
       }[icon]
     },
     mapVisit(title, store = null) {

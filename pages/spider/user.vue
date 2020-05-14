@@ -34,6 +34,7 @@
       <el-table-column
         label="id"
         prop="user_id"
+        width="100px"
       >
         <template slot-scope="scope">
           <a
@@ -46,9 +47,18 @@
       <el-table-column
         label="来源"
         prop="name"
+        width="100px"
       >
         <template slot-scope="scope">
           {{ convertUserSite(scope.row) }}
+        </template>
+      </el-table-column>
+      <el-table-column
+        label="用户"
+        prop="self"
+      >
+        <template slot-scope="scope">
+          <a target="_blank" :href="`https://www.calibur.tv/user/${scope.row.self.slug}`" v-text="scope.row.self.nickname" />
         </template>
       </el-table-column>
       <el-table-column
