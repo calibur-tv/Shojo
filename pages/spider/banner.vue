@@ -1,4 +1,11 @@
 <style lang="scss">
+#spider-banner {
+  .poster {
+    width: 130px;
+    height: 100px;
+    object-fit: contain;
+  }
+}
 </style>
 
 <template>
@@ -7,14 +14,67 @@
     v-loading="pageLoading"
   >
     <header class="page-header">
-      <ElButton type="primary" @click="showDialog = true">
+      <ElButton type="primary" @click="showCreateBanner">
         添加轮播
       </ElButton>
     </header>
+    <el-table
+      :data="list"
+      border
+      fit
+      highlight-current-row
+    >
+      <el-table-column
+        label="索引"
+        prop="id"
+      />
+      <el-table-column
+        label="链接"
+        prop="link"
+      >
+        <template slot-scope="scope">
+          <a target="_blank" :href="scope.row.link" v-text="scope.row.title" />
+        </template>
+      </el-table-column>
+      <el-table-column
+        label="图片"
+        prop="image"
+        width="130px"
+      >
+        <template slot-scope="scope">
+          <img class="poster" :src="scope.row.image" />
+        </template>
+      </el-table-column>
+      <el-table-column
+        label="曝光"
+        prop="visit_count"
+      />
+      <el-table-column
+        label="点击"
+        prop="click_count"
+      />
+      <el-table-column
+        label="操作"
+      >
+        <template slot-scope="scope">
+          <ElButton
+            :type="scope.row.online ? 'warning' : 'danger'"
+            size="small"
+            @click="handleToggleBanner(scope.row)"
+          >{{ scope.row.online ? '去下线' : '去上线' }}</ElButton>
+          <ElButton
+            type="primary"
+            size="small"
+            @click="showUpdateBanner(scope.row)"
+          >更新</ElButton>
+        </template>
+      </el-table-column>
+    </el-table>
     <VDialog
       v-model="showDialog"
+      :loading="submitting"
       title="添加轮播"
-      @submit="handleCreateBanner"
+      @submit="handleSubmitBanner"
     >
       <el-form label-position="top">
         <el-form-item label="标题">
@@ -66,7 +126,8 @@ export default {
         image: '',
         title: ''
       },
-      showDialog: false
+      showDialog: false,
+      submitting: false
     }
   },
   computed: {
@@ -99,8 +160,66 @@ export default {
           this.pageLoading = false
         })
     },
-    handleCreateBanner() {
-
+    handleSubmitBanner() {
+      if (!this.form.title) {
+        return
+      }
+      if (!this.form.image) {
+        return
+      }
+      if (!this.form.link || !/^https?:\/\/(([a-zA-Z0-9_-])+(\.)?)*(:\d+)?(\/((\.)?(\?)?=?&?[a-zA-Z0-9_-](\?)?)*)*$/i.test(this.form.link)) {
+        return
+      }
+      if (this.submitting) {
+        return
+      }
+      const isUpdate = !!this.form.id
+      this.submitting = true
+      this.$axios.$post(`console/cm/${isUpdate ? 'update' : 'create'}_banner`, {
+        ...this.form
+      })
+        .then((res) => {
+          if (isUpdate) {
+            this.list.forEach((item, index) => {
+              if (item.id === this.form.id) {
+                this.list.splice(index, 1, { ...this.form })
+              }
+            })
+          } else {
+            this.list.unshift(res)
+          }
+          this.submitting = false
+          this.showDialog = false
+        })
+        .catch(() => {
+          this.submitting = false
+        })
+    },
+    showCreateBanner() {
+      this.$set(this, 'form', {
+        type: 0,
+        link: '',
+        image: '',
+        title: ''
+      })
+      this.showDialog = true
+    },
+    showUpdateBanner(row) {
+      this.$set(this, 'form', row)
+      this.showDialog = true
+    },
+    handleToggleBanner(row) {
+      this.$confirm('确定要执行该操作吗？')
+        .then(() => {
+          this.$axios.$post('console/cm/toggle_banner', {
+            id: row.id,
+            status: !row.online
+          })
+            .then(() => {
+              row.online = !row.online
+            })
+        })
+        .catch(() => {})
     }
   }
 }
