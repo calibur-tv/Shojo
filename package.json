@@ -18,7 +18,7 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "@calibur/sakura": "^2.5.3",
+    "@calibur/sakura": "^2.5.4",
     "@nuxtjs/axios": "^5.10.3",
     "cross-env": "^7.0.2",
     "echarts": "^4.7.0",

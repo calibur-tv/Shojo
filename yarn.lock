@@ -911,10 +911,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@calibur/sakura@^2.5.3":
-  version "2.5.3"
-  resolved "https://registry.yarnpkg.com/@calibur/sakura/-/sakura-2.5.3.tgz#34e5bc96227969a74e458f789477c11f102f1bf0"
-  integrity sha512-Gc+MV5aClog56Rcph45rsB9wLpkELU3QL80HIziYt/h20WwTj1qE8PURMdohQKsiQU+c5LHhcMQB6au6hNU62w==
+"@calibur/sakura@^2.5.4":
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/@calibur/sakura/-/sakura-2.5.4.tgz#95eb21589522372eac24d221a59f522c0d18c1ec"
+  integrity sha512-ZNVjEmhj+xcuVZku7YBh9nbLlXurtOFvm0cdouzNHxEg17J8KfPjhJRmtvcOdm3OqNFweog2fFsP2QXul2IRZQ==
   dependencies:
     async-validator "^3.3.0"
     throttle-debounce "^2.1.0"
