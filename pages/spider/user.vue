@@ -172,7 +172,11 @@ export default {
         })
     },
     convertUserSite(data) {
-      return this.sites.find(_ => _.id === data.site_type).name
+      const user = this.sites.find(_ => _.id === data.site_type)
+      if (!user) {
+        return ''
+      }
+      return user.name
     },
     convertUserLink(data) {
       const user = this.sites.find(_ => _.id === data.site_type)
