@@ -175,7 +175,11 @@ export default {
       return this.sites.find(_ => _.id === data.site_type).name
     },
     convertUserLink(data) {
-      return this.sites.find(_ => _.id === data.site_type).path.replace('{id}', data.user_id)
+      const user = this.sites.find(_ => _.id === data.site_type)
+      if (!user) {
+        return ''
+      }
+      return user.path.replace('{id}', data.user_id)
     },
     deleteUser(user, index) {
       this.$confirm(`确定要${user.deleted_at ? '恢复' : '删除'}该用户吗？`, '提示')

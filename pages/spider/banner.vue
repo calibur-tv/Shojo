@@ -42,7 +42,7 @@
         width="130px"
       >
         <template slot-scope="scope">
-          <img class="poster" :src="scope.row.image" />
+          <img class="poster" :src="scope.row.image">
         </template>
       </el-table-column>
       <el-table-column
@@ -61,12 +61,16 @@
             :type="scope.row.online ? 'warning' : 'danger'"
             size="small"
             @click="handleToggleBanner(scope.row)"
-          >{{ scope.row.online ? '去下线' : '去上线' }}</ElButton>
+          >
+            {{ scope.row.online ? '去下线' : '去上线' }}
+          </ElButton>
           <ElButton
             type="primary"
             size="small"
             @click="showUpdateBanner(scope.row)"
-          >更新</ElButton>
+          >
+            更新
+          </ElButton>
         </template>
       </el-table-column>
     </el-table>
