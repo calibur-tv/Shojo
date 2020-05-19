@@ -15,7 +15,8 @@ export default {
         spider: '运营',
         'spider-user': '渠道用户',
         'spider-channel': '渠道状态',
-        'spider-banner': '首页轮播'
+        'spider-banner': '首页轮播',
+        'spider-menu': '首页导航'
       }[title]
     },
     mapIcon(icon) {
@@ -29,7 +30,8 @@ export default {
         spider: 'user-md',
         'spider-user': 'user-plus',
         'spider-channel': 'biohazard',
-        'spider-banner': 'photo-video'
+        'spider-banner': 'photo-video',
+        'spider-menu': 'map-signs'
       }[icon]
     },
     mapVisit(title, store = null) {
