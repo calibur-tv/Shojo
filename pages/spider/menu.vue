@@ -171,7 +171,7 @@ export default {
       if (!this.form.name || !this.form.type || !this.form.href) {
         return
       }
-      if (!/^https?:\/\/(([a-zA-Z0-9_-])+(\.)?)*(:\d+)?(\/((\.)?(\?)?=?&?[a-zA-Z0-9_-](\?)?)*)*$/i.test(this.form.href)) {
+      if (!/^https?:\/\//i.test(this.form.href)) {
         return
       }
       this.$axios.$post('console/cm/create_menu_link', { ...this.form })

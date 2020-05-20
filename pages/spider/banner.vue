@@ -171,7 +171,7 @@ export default {
       if (!this.form.image) {
         return
       }
-      if (!this.form.link || !/^https?:\/\/(([a-zA-Z0-9_-])+(\.)?)*(:\d+)?(\/((\.)?(\?)?=?&?[a-zA-Z0-9_-](\?)?)*)*$/i.test(this.form.link)) {
+      if (!this.form.link || !/^https?:\/\//i.test(this.form.link)) {
         return
       }
       if (this.submitting) {
