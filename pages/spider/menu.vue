@@ -126,7 +126,11 @@ export default {
   },
   methods: {
     computedType({ type }) {
-      return this.menu.find(_ => _.id === type).name
+      const menu = this.menu.find(_ => _.id === type)
+      if (!menu) {
+        return ''
+      }
+      return menu.name
     },
     getAllMenu() {
       this.$axios.$get('console/cm/show_all_menu_type')
