@@ -18,7 +18,7 @@
         添加轮播
       </ElButton>
     </header>
-    <el-table
+    <ElTable
       :data="list"
       border
       fit
@@ -73,7 +73,7 @@
           </ElButton>
         </template>
       </el-table-column>
-    </el-table>
+    </ElTable>
     <VDialog
       v-model="showDialog"
       :loading="submitting"

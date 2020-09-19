@@ -1,22 +1,29 @@
 export default {
   computed: {
     mapHidden() {
-      return []
+      return [
+        'idol-show-slug'
+      ]
     }
   },
   methods: {
     mapTitle(title) {
       return {
-        dashboard: '首页',
+        dashboard: '仪表盘',
         manager: '管理',
         'manager-role': '用户权限',
         'manager-risk': '敏感词库',
         'manager-test': '敏感检测',
-        spider: '运营',
-        'spider-user': '渠道用户',
-        'spider-channel': '渠道状态',
-        'spider-banner': '首页轮播',
-        'spider-menu': '首页导航'
+        spider: '首页',
+        bangumi: '番剧',
+        idol: '角色',
+        'idol-stats': '统计',
+        'idol-show-slug': '详情',
+        'idol-import': '查询',
+        'spider-user': '用户',
+        'spider-channel': '状态',
+        'spider-banner': '轮播',
+        'spider-menu': '导航'
       }[title]
     },
     mapIcon(icon) {
@@ -27,6 +34,9 @@ export default {
         'manager-role': 'scroll',
         'manager-risk': 'dice-d20',
         'manager-test': 'temperature-low',
+        idol: 'user-injured',
+        'idol-import': 'map-signs',
+        'idol-stats': 'user-injured',
         spider: 'user-md',
         'spider-user': 'user-plus',
         'spider-channel': 'biohazard',
