@@ -2,7 +2,8 @@ export default {
   computed: {
     mapHidden() {
       return [
-        'idol-show-slug'
+        'idol-show-slug',
+        'bangumi-show-slug'
       ]
     }
   },
@@ -16,6 +17,8 @@ export default {
         'manager-test': '敏感检测',
         spider: '首页',
         bangumi: '番剧',
+        'bangumi-import': '列表',
+        'bangumi-stats': '统计',
         idol: '角色',
         'idol-stats': '统计',
         'idol-show-slug': '详情',
@@ -34,10 +37,13 @@ export default {
         'manager-role': 'scroll',
         'manager-risk': 'dice-d20',
         'manager-test': 'temperature-low',
+        bangumi: 'compact-disc',
+        'bangumi-stats': 'stream',
+        'bangumi-import': 'cash-register',
         idol: 'user-injured',
         'idol-import': 'map-signs',
-        'idol-stats': 'user-injured',
-        spider: 'user-md',
+        'idol-stats': 'signal',
+        spider: 'home',
         'spider-user': 'user-plus',
         'spider-channel': 'biohazard',
         'spider-banner': 'photo-video',

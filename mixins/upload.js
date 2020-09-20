@@ -2,7 +2,7 @@ export default {
   data() {
     return {
       imageUploadToken: '',
-      imageUploadAccept: ['jpeg', 'png', 'jpg', 'gif'],
+      imageUploadAccept: ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'],
       imageUploadAction: 'https://upload.qiniup.com',
       imagePrefix: 'https://m1.calibur.tv/'
     }

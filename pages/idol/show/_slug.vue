@@ -192,12 +192,6 @@ export default {
     VAudio
   },
   mixins: [pageMixin, uploadMixin],
-  props: {
-    slug: {
-      type: String,
-      required: true
-    }
-  },
   data() {
     const validateAlias = (rule, value, callback) => {
       if (!value || !value.length) {
@@ -233,6 +227,11 @@ export default {
       },
       creating: false,
       voiceList: []
+    }
+  },
+  computed: {
+    slug() {
+      return this.$route.query.slug
     }
   },
   created() {
@@ -351,12 +350,31 @@ export default {
       }
     },
     handleSubmit() {
+      if (!this.idol.name) {
+        return
+      }
+
+      if (!this.idol.alias.length) {
+        return
+      }
+
+      if (!this.idol.avatar) {
+        return
+      }
+
+      if (!this.idol.intro) {
+        return
+      }
+
       if (this.submitting) {
         return
       }
       this.submitting = true
       this.$axios
-        .$post('idol/update', this.idol)
+        .$post('idol/update', {
+          ...this.idol,
+          alias: [this.idol.name, ...this.idol.alias]
+        })
         .finally(() => {
           this.submitting = false
         })
