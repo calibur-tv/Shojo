@@ -41,6 +41,25 @@
         prop="name"
       />
       <el-table-column
+        label="类型"
+      >
+        <template slot-scope="scope">
+          {{ computedType(scope.row.type) }}
+        </template>
+      </el-table-column>
+      <el-table-column
+        label="来源"
+      >
+        <template slot-scope="scope">
+          <a
+            :href="`http://bgm.tv/subject/${scope.row.source_id}`"
+            target="_blank"
+          >
+            {{ scope.row.source_id }}
+          </a>
+        </template>
+      </el-table-column>
+      <el-table-column
         label="操作"
       >
         <template slot-scope="scope">
@@ -178,6 +197,19 @@ export default {
   },
   mounted() {},
   methods: {
+    computedType(type) {
+      return [
+        '动漫',
+        '游戏',
+        '分区',
+        '-',
+        '-',
+        '-',
+        '-',
+        '-',
+        '其它'
+      ][type]
+    },
     handleCreateBangumi() {
       if (!this.form.name) {
         return
@@ -192,6 +224,10 @@ export default {
       }
 
       if (!this.form.intro) {
+        return
+      }
+
+      if (!this.form.source_id) {
         return
       }
 

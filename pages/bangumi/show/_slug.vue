@@ -132,6 +132,18 @@
             prop="name"
           />
           <el-table-column
+            label="来源"
+          >
+            <template slot-scope="scope">
+              <a
+                :href="`http://bgm.tv/character/${scope.row.source_id}`"
+                target="_blank"
+              >
+                {{ scope.row.source_id }}
+              </a>
+            </template>
+          </el-table-column>
+          <el-table-column
             label="操作"
           >
             <template slot-scope="scope">
@@ -268,6 +280,10 @@ export default {
       }
     },
     handleCreateIdol() {
+      if (!this.idol.id) {
+        return
+      }
+
       if (!this.idol.name) {
         return
       }
