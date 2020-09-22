@@ -132,6 +132,14 @@
             prop="name"
           />
           <el-table-column
+            label="粉丝"
+            prop="fans_count"
+          />
+          <el-table-column
+            label="团子"
+            prop="coin_count"
+          />
+          <el-table-column
             label="来源"
           >
             <template slot-scope="scope">
