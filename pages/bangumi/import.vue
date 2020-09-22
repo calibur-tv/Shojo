@@ -227,7 +227,7 @@ export default {
         return
       }
 
-      if (!this.form.source_id) {
+      if (!this.form.source_id && this.form.type === 0) {
         return
       }
 

@@ -338,7 +338,7 @@ export default {
       try {
         const { format } = resp.data.meta
         this.voice.meta = {
-          duration: +parseFloat(format.duration).toFixed(1),
+          duration: +parseFloat(format.duration).toFixed(1) * 1000,
           size: +format.size
         }
         return {
